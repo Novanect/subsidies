@@ -179,10 +179,22 @@ footer a{color:var(--navy);font-weight:600}
   color:#8b96a8;margin-top:8px;
 }
 .cta{
-  display:block;margin:0 14px 4px;padding:15px;
-  background:var(--navy);color:#fff;text-decoration:none;
-  border-radius:6px;font-size:14px;font-weight:700;
-  border-bottom:3px solid var(--amber);
+  margin:22px 14px 4px;padding:20px 18px;
+  background:var(--navy);color:#fff;
+  border-radius:6px;border-bottom:3px solid var(--amber);
+}
+.cta-lead{
+  font-size:15px;font-weight:700;letter-spacing:.01em;
+  margin-bottom:9px;
+}
+.cta-body{
+  font-size:13px;line-height:1.75;color:#c9d4e2;
+}
+.cta-body b{color:var(--amber);font-weight:700}
+.cta-note{
+  font-family:var(--mono);font-size:10px;letter-spacing:.04em;
+  color:#8fa0b8;margin-top:11px;
+  padding-top:10px;border-top:1px solid rgba(255,255,255,.12);
 }
 
 /* 読み込み時の控えめな立ち上がり */
@@ -203,7 +215,7 @@ footer a{color:var(--navy);font-weight:600}
 <header>
   <div class="brand">Novanect</div>
   <h1>現在公募中の補助金</h1>
-  <div class="updated">2026年7月14日 07:57 更新</div>
+  <div class="updated">2026年7月14日 08:23 更新</div>
   <div class="tabrow">
     <div class="axis-label">
       <span class="axis-l1">締切まで</span>
@@ -2592,7 +2604,11 @@ footer a{color:var(--navy);font-weight:600}
 </details>
 </section>
 
-<a class="cta" href="#" id="consult">「うちは対象になる？」を相談する</a>
+<div class="cta">
+  <p class="cta-lead">気になる補助金はありましたか？</p>
+  <p class="cta-body">この画面を閉じて、メニューの<b>「無料相談」</b>を押してください。<br>補助金名をお知らせいただければ、対象になるかを確認してご返信します。</p>
+  <p class="cta-note">入力はいりません。ボタンを押すだけです。</p>
+</div>
 
 <footer>
   補助金名・実施機関・締切は公的機関の公表情報です。<br>
