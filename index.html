@@ -1,0 +1,2640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1f3d">
+<title>現在公募中の補助金｜Novanect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f1f3d;
+  --navy-2:#1c3157;
+  --amber:#c8891a;
+  --shu:#b7282e;         /* 締切の朱 */
+  --paper:#eef1f5;       /* 官庁書類のような冷たい紙 */
+  --card:#fff;
+  --ink:#16203a;
+  --muted:#6c7789;
+  --line:#d8dfe8;
+  --mono:'Roboto Mono',ui-monospace,monospace;
+  --jp:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP','Yu Gothic',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--jp);background:var(--paper);color:var(--ink);
+  line-height:1.65;-webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.wrap{max-width:680px;margin:0 auto}
+
+/* ── ヘッダー ── */
+header{
+  background:var(--navy);color:#fff;
+  padding:18px 18px 0;
+  position:sticky;top:0;z-index:20;
+  box-shadow:0 2px 14px rgba(15,31,61,.22);
+}
+.brand{
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;
+  color:var(--amber);text-transform:uppercase;margin-bottom:5px;
+}
+h1{font-size:19px;font-weight:700;letter-spacing:.02em}
+.updated{
+  font-family:var(--mono);font-size:11px;color:#93a3ba;
+  margin-top:3px;letter-spacing:.04em;
+}
+.tabrow{display:flex;align-items:flex-end;margin-top:14px}
+.axis-label{
+  flex:0 0 62px;                 /* 下の日数列(.mark)と同じ幅で真上に揃える */
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding-bottom:11px;
+  border-bottom:3px solid transparent;
+  line-height:1.25;
+}
+.axis-l1{
+  font-size:10px;font-weight:700;color:var(--amber);letter-spacing:.04em;
+}
+.axis-l2{
+  font-size:9px;color:#8fa0b8;letter-spacing:.01em;
+}
+.tabs{display:flex;gap:2px;flex:1}
+.tab{
+  flex:1;background:transparent;border:0;cursor:pointer;
+  color:#8fa0b8;font-family:var(--jp);font-size:14px;font-weight:600;
+  padding:11px 4px 12px;border-bottom:3px solid transparent;
+  transition:color .18s,border-color .18s;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+.tab-n{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  background:rgba(255,255,255,.1);padding:1px 6px;border-radius:9px;
+}
+.tab[aria-selected="true"]{color:#fff;border-bottom-color:var(--amber)}
+.tab[aria-selected="true"] .tab-n{background:var(--amber);color:var(--navy);font-weight:700}
+.tab:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
+
+/* ── 帯（緊急度） ── */
+.band{
+  position:sticky;top:108px;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;font-weight:700;letter-spacing:.08em;
+  padding:7px 18px;margin:0;
+  background:var(--navy-2);color:#fff;
+}
+.band--urgent{background:var(--shu)}
+.band--soon{background:var(--amber);color:var(--navy)}
+.band-n{font-family:var(--mono);font-size:11px;opacity:.82}
+
+/* ── 一覧（時間軸） ── */
+.panel{padding:0 0 28px}
+.row{
+  display:flex;gap:0;text-decoration:none;color:inherit;
+  background:var(--card);border-bottom:1px solid var(--line);
+  position:relative;
+}
+.row:active{background:#f7f9fb}
+/* 左の時間軸 */
+.mark{
+  flex:0 0 62px;position:relative;
+  display:flex;flex-direction:column;align-items:center;
+  padding:15px 0 15px;
+  background:linear-gradient(90deg,#f4f7fa 0%,#f4f7fa 100%);
+  border-right:1px solid var(--line);
+}
+.mark::before{  /* 縦の軸線 */
+  content:"";position:absolute;left:50%;top:0;bottom:0;
+  width:1px;background:var(--line);transform:translateX(-.5px);
+}
+.dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--muted);border:2px solid var(--card);
+  box-shadow:0 0 0 1px var(--line);
+  position:relative;z-index:1;margin-bottom:7px;
+}
+.row--urgent .dot{background:var(--shu);box-shadow:0 0 0 1px var(--shu),0 0 0 4px rgba(183,40,46,.14)}
+.row--soon .dot{background:var(--amber);box-shadow:0 0 0 1px var(--amber)}
+.days{
+  font-family:var(--mono);line-height:1;position:relative;z-index:1;
+  background:#f4f7fa;padding:2px 0;
+}
+.days b{font-size:22px;font-weight:700;letter-spacing:-.03em}
+.days i{font-style:normal;font-size:10px;margin-left:1px;color:var(--muted)}
+.row--urgent .days b{color:var(--shu)}
+.row--soon .days b{color:#96660f}
+.dl{
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  margin-top:5px;background:#f4f7fa;padding:1px 0;position:relative;z-index:1;
+}
+.body{flex:1;min-width:0;padding:14px 16px 15px}
+.name{
+  font-size:15px;font-weight:700;line-height:1.45;
+  color:var(--navy);letter-spacing:.01em;
+}
+.sum{font-size:13px;color:#43506a;margin-top:5px;line-height:1.6}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:9px}
+.chip{
+  font-size:11px;font-weight:600;color:var(--navy);
+  background:#e4eaf2;border-radius:3px;padding:2px 7px;
+}
+.org{font-size:11px;color:var(--muted)}
+.notewrap{margin-top:7px}
+.note{
+  font-family:var(--mono);font-size:11px;color:var(--shu);
+  font-weight:500;letter-spacing:.01em;
+}
+.empty{padding:44px 18px;text-align:center;color:var(--muted);font-size:14px}
+
+/* ── 通年 ── */
+.always{margin:22px 14px 0;background:var(--card);border:1px solid var(--line);border-radius:6px}
+.always summary{
+  cursor:pointer;list-style:none;padding:13px 15px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:13px;font-weight:600;color:var(--navy);
+}
+.always summary::-webkit-details-marker{display:none}
+.always summary b{font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500}
+.always summary::after{content:"＋";color:var(--amber);font-weight:700;margin-left:9px}
+.always[open] summary::after{content:"−"}
+.mini-list{border-top:1px solid var(--line)}
+.mini{
+  display:block;padding:11px 15px;text-decoration:none;
+  border-bottom:1px solid #eef1f5;
+}
+.mini:last-child{border-bottom:0}
+.mini-name{display:block;font-size:13px;font-weight:600;color:var(--navy);line-height:1.5}
+.mini-org{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── フッター ── */
+footer{
+  padding:26px 20px 34px;text-align:center;
+  font-size:11px;color:var(--muted);line-height:1.9;
+}
+footer a{color:var(--navy);font-weight:600}
+.src{
+  font-family:var(--mono);font-size:10px;letter-spacing:.04em;
+  color:#8b96a8;margin-top:8px;
+}
+.cta{
+  display:block;margin:0 14px 4px;padding:15px;
+  background:var(--navy);color:#fff;text-decoration:none;
+  border-radius:6px;font-size:14px;font-weight:700;
+  border-bottom:3px solid var(--amber);
+}
+
+/* 読み込み時の控えめな立ち上がり */
+@media (prefers-reduced-motion:no-preference){
+  .row{animation:in .34s ease-out both}
+  .row:nth-child(-n+8){animation-delay:calc((var(--i,0)) * 24ms)}
+  @keyframes in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+}
+@media (min-width:681px){
+  body{padding:0 0 20px}
+  .wrap{box-shadow:0 0 40px rgba(15,31,61,.09);background:var(--paper);min-height:100vh}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">Novanect</div>
+  <h1>現在公募中の補助金</h1>
+  <div class="updated">2026年7月14日 07:57 更新</div>
+  <div class="tabrow">
+    <div class="axis-label">
+      <span class="axis-l1">締切まで</span>
+      <span class="axis-l2">の残り日数</span>
+    </div>
+    <div class="tabs" role="tablist"><button class="tab" data-region="zenkoku" role="tab" aria-selected="false" aria-controls="panel-zenkoku">全国<span class="tab-n">61</span></button><button class="tab" data-region="tokyo" role="tab" aria-selected="false" aria-controls="panel-tokyo">東京都<span class="tab-n">95</span></button><button class="tab" data-region="osaka" role="tab" aria-selected="false" aria-controls="panel-osaka">大阪府<span class="tab-n">25</span></button></div>
+  </div>
+</header>
+
+
+<section class="panel" id="panel-zenkoku" role="tabpanel" hidden>
+  <h2 class="band band--urgent"><span class="band-name">今週中</span><span class="band-n">3</span></h2>
+<a class="row row--urgent" href="https://j-net21.smrj.go.jp/snavi2/articles/185768" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>1</b><i>日</i></span>
+    <span class="dl">7/14</span>
+  </div>
+  <div class="body">
+    <h3 class="name">病床数適正化緊急支援事業</h3>
+    <p class="sum">病床数の適正化に取り組む医療機関に対し、その体制転換にかかる費用を緊急的に支援する制度。</p>
+    <div class="meta"><span class="chip">医療機関</span><span class="org">厚生労働省</span></div>
+    <div class="notewrap"><span class="note">締切7/14（翌日）</span></div>
+  </div>
+</a>
+<a class="row row--urgent" href="https://j-net21.smrj.go.jp/snavi2/articles/185006" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>2</b><i>日</i></span>
+    <span class="dl">7/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">空港防災機能施設整備事業費補助金（令和8年度）</h3>
+    <p class="sum">災害時に航空機へ給油できる体制を確保するため、空港の給油施設を整備する費用を補助する制度。</p>
+    <div class="meta"><span class="chip">空港・航空関連</span><span class="org">国土交通省</span></div>
+    <div class="notewrap"><span class="note">締切7/15</span></div>
+  </div>
+</a>
+<a class="row row--urgent" href="https://j-net21.smrj.go.jp/snavi2/articles/187199" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>4</b><i>日</i></span>
+    <span class="dl">7/17</span>
+  </div>
+  <div class="body">
+    <h3 class="name">新手法による電力融通モデル創出事業（二次公募）</h3>
+    <p class="sum">再生可能エネルギーの新しい電力融通の仕組みを実証するモデル事業への補助制度。</p>
+    <div class="meta"><span class="chip">エネルギー事業者</span><span class="org">環境省</span></div>
+    <div class="notewrap"><span class="note">締切7/17</span></div>
+  </div>
+</a><h2 class="band band--soon"><span class="band-name">今月中</span><span class="band-n">16</span></h2>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185962" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>8</b><i>日</i></span>
+    <span class="dl">7/21</span>
+  </div>
+  <div class="body">
+    <h3 class="name">デジタル化・AI導入補助金2026「セキュリティ対策推進枠」※3次締切分</h3>
+    <p class="sum">サイバー攻撃への備えとして、IPA登録のセキュリティ対策サービスの利用料を補助する制度。</p>
+    <div class="meta"><span class="chip">全業種</span><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    <div class="notewrap"><span class="note">★3次締切7/21。上限150万円</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185961" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>8</b><i>日</i></span>
+    <span class="dl">7/21</span>
+  </div>
+  <div class="body">
+    <h3 class="name">デジタル化・AI導入補助金2026「インボイス枠（電子取引類型）」※3次締切分</h3>
+    <p class="sum">発注側企業がクラウド受発注システムを導入し、受注側の中小企業にアカウントを提供する場合の費用を補助する制度。</p>
+    <div class="meta"><span class="chip">発注側の企業</span><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    <div class="notewrap"><span class="note">★3次締切7/21。上限350万円</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185960" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>8</b><i>日</i></span>
+    <span class="dl">7/21</span>
+  </div>
+  <div class="body">
+    <h3 class="name">デジタル化・AI導入補助金2026「インボイス枠（インボイス対応類型）」※3次締切分</h3>
+    <p class="sum">インボイス制度に対応した会計・受発注・決済システムの導入費を補助する制度。PCやレジ等のハードも対象。</p>
+    <div class="meta"><span class="chip">全業種</span><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    <div class="notewrap"><span class="note">★3次締切7/21。補助率最大3/4〜4/5</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185959" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>8</b><i>日</i></span>
+    <span class="dl">7/21</span>
+  </div>
+  <div class="body">
+    <h3 class="name">デジタル化・AI導入補助金2026「通常枠」※3次締切分</h3>
+    <p class="sum">業務効率化のためのソフトウェア・AIツールの導入費、クラウド利用料、導入設定費などを補助する制度。旧IT導入補助金。</p>
+    <div class="meta"><span class="chip">全業種</span><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    <div class="notewrap"><span class="note">★3次締切7/21。上限450万円・補助率1/2</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/186580" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>11</b><i>日</i></span>
+    <span class="dl">7/24</span>
+  </div>
+  <div class="body">
+    <h3 class="name">窓、壁等と一体となった太陽光発電設備の導入促進事業（二次公募）</h3>
+    <p class="sum">建物の窓や壁と一体化した太陽光発電設備の導入費を補助する制度。</p>
+    <div class="meta"><span class="chip">建設・不動産</span><span class="org">環境省</span></div>
+    <div class="notewrap"><span class="note">締切7/24</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185784" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>11</b><i>日</i></span>
+    <span class="dl">7/24</span>
+  </div>
+  <div class="body">
+    <h3 class="name">二酸化炭素排出抑制対策事業費等補助金（プラスチック資源・金属資源等のバリューチェーン脱炭素化のための高度化設備導入等促進事業）</h3>
+    <p class="sum">プラスチックや金属の資源循環を進めるバリューチェーン構築の取組を補助する制度。</p>
+    <div class="meta"><span class="chip">製造・リサイクル</span><span class="org">環境省</span></div>
+    <div class="notewrap"><span class="note">締切7/24</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185650" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>11</b><i>日</i></span>
+    <span class="dl">7/24</span>
+  </div>
+  <div class="body">
+    <h3 class="name">事業承継・M＆A補助金（15次公募）</h3>
+    <p class="sum">事業承継やM&amp;Aに伴う設備投資、専門家への手数料、廃業費用などを補助する制度。</p>
+    <div class="meta"><span class="chip">事業承継・M&amp;A検討企業</span><span class="org">独立行政法人 中小企業基盤整備機構・ほか</span></div>
+    <div class="notewrap"><span class="note">★締切7/24。承継の定番制度</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/184747" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>11</b><i>日</i></span>
+    <span class="dl">7/24</span>
+  </div>
+  <div class="body">
+    <h3 class="name">地域の事業者間連携を通じた物流生産性向上推進事業</h3>
+    <p class="sum">複数の事業者が連携して共同配送などに取り組み、物流の生産性を高める事業への補助制度。</p>
+    <div class="meta"><span class="chip">運輸・物流</span><span class="org">国土交通省</span></div>
+    <div class="notewrap"><span class="note">★締切7/24。連携型</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/187182" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>14</b><i>日</i></span>
+    <span class="dl">7/27</span>
+  </div>
+  <div class="body">
+    <h3 class="name">DMO総合支援事業（DMO体制整備・機能強化事業）</h3>
+    <p class="sum">観光地域づくり法人（DMO）の組織体制の整備や機能強化にかかる費用を補助する制度。二次公募。</p>
+    <div class="meta"><span class="chip">観光・DMO</span><span class="org">観光庁</span></div>
+    <div class="notewrap"><span class="note">締切7/27</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/187097" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">二酸化炭素排出抑制対策事業費等補助金（ストレージパリティの達成に向けた太陽光発電設備等の価格低減促進事業）</h3>
+    <p class="sum">事業所からの二酸化炭素排出を抑制する設備導入などを補助する制度。</p>
+    <div class="meta"><span class="chip">製造業・設備保有企業</span><span class="org">環境省（執行団体：一般財団法人環境イノベーション情報機構）</span></div>
+    <div class="notewrap"><span class="note">締切7/31</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/186039" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業省力化投資補助金（一般型）（第7回公募）</h3>
+    <p class="sum">人手不足の解消を目的に、省力化につながる機械設備やシステムの導入費を補助する制度。オーダーメイド対応も可。</p>
+    <div class="meta"><span class="chip">製造・建設・運輸ほか</span><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    <div class="notewrap"><span class="note">★締切7/31。上限最大1億円。採択率が比較的高い</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185583" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">空港脱炭素化推進事業費補助金（令和8年度）</h3>
+    <p class="sum">空港施設の脱炭素化に向けた設備導入や取組を支援する制度。</p>
+    <div class="meta"><span class="chip">空港・航空関連</span><span class="org">国土交通省</span></div>
+    <div class="notewrap"><span class="note">締切7/31</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185152" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小物流事業者の労働生産性向上事業費補助金（共同輸配送や帰り荷確保等のための物流効率化事業）</h3>
+    <p class="sum">共同輸配送や帰り荷の確保など、物流の効率化に取り組む中小事業者を支援する制度。</p>
+    <div class="meta"><span class="chip">運輸・物流</span><span class="org">国土交通省</span></div>
+    <div class="notewrap"><span class="note">★締切7/31。DX実証事業とは別枠</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/181835" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">発明研究奨励金（公益財団法人日本発明振興協会）</h3>
+    <p class="sum">発明の実用化に向けた研究開発に対して交付される奨励金。</p>
+    <div class="meta"><span class="chip">研究開発・発明者</span><span class="org">公益財団法人日本発明振興協会</span></div>
+    <div class="notewrap"><span class="note">締切7/31</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/177141" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>24</b><i>日</i></span>
+    <span class="dl">8/6</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業組合等課題対応支援事業</h3>
+    <p class="sum">組合など複数の事業者が連携して行う販路開拓、システム開発、研修などを補助する制度。</p>
+    <div class="meta"><span class="chip">組合・連携グループ</span><span class="org">全国中小企業団体中央会</span></div>
+    <div class="notewrap"><span class="note">締切8/6。単独企業は対象外</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/181078" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>28</b><i>日</i></span>
+    <span class="dl">8/10</span>
+  </div>
+  <div class="body">
+    <h3 class="name">農業法人新規展開支援事業</h3>
+    <p class="sum">農業法人が新たな事業分野へ展開する取組を支援する制度。</p>
+    <div class="meta"><span class="chip">農業法人（静岡）</span><span class="org">静岡県</span></div>
+    <div class="notewrap"><span class="note">締切8/10</span></div>
+  </div>
+</a><h2 class="band band--mid"><span class="band-name">2か月以内</span><span class="band-n">6</span></h2>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/187226" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>35</b><i>日</i></span>
+    <span class="dl">8/17</span>
+  </div>
+  <div class="body">
+    <h3 class="name">ブルーカーボン等の吸収源対策に係る大規模実証プロジェクトの立上げ等実施事業</h3>
+    <p class="sum">藻場の再生などブルーカーボンによるCO2吸収源対策の大規模実証プロジェクトを支援する制度。</p>
+    <div class="meta"><span class="chip">環境・水産・建設</span><span class="org">環境省</span></div>
+    <div class="notewrap"><span class="note">締切8/17</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/187111" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>36</b><i>日</i></span>
+    <span class="dl">8/18</span>
+  </div>
+  <div class="body">
+    <h3 class="name">地域一体となった観光産業の効率化支援事業</h3>
+    <p class="sum">宿泊業を中心に、地域が一体となって観光産業の業務効率化に取り組む事業への補助制度。</p>
+    <div class="meta"><span class="chip">宿泊・観光</span><span class="org">観光庁</span></div>
+    <div class="notewrap"><span class="note">締切8/18</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/185963" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>43</b><i>日</i></span>
+    <span class="dl">8/25</span>
+  </div>
+  <div class="body">
+    <h3 class="name">デジタル化・AI導入補助金2026「複数者連携デジタル化・AI導入枠」※2次締切分</h3>
+    <p class="sum">10者以上の事業者が連携してデジタル化・AI導入に取り組む場合の費用を補助する制度。</p>
+    <div class="meta"><span class="chip">連携グループ・商店街等</span><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    <div class="notewrap"><span class="note">締切8/25。上限3,000万円と大型</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/186027" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>46</b><i>日</i></span>
+    <span class="dl">8/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">グループホーム・障害者支援施設の人材確保支援事業</h3>
+    <p class="sum">障害者支援施設やグループホームにおける人材確保の取組を支援する制度。</p>
+    <div class="meta"><span class="chip">福祉事業者</span><span class="org">国土交通省</span></div>
+    <div class="notewrap"><span class="note">締切8/28</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/186026" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>46</b><i>日</i></span>
+    <span class="dl">8/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">居宅介護事業所・重度訪問介護事業所の人材確保支援事業</h3>
+    <p class="sum">居宅介護・重度訪問介護事業所における人材確保の取組を支援する制度。</p>
+    <div class="meta"><span class="chip">介護事業者</span><span class="org">国土交通省</span></div>
+    <div class="notewrap"><span class="note">締切8/28</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/185154" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>46</b><i>日</i></span>
+    <span class="dl">8/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">自動車における再生材市場構築のための産官学連携推進事業</h3>
+    <p class="sum">自動車部品の再生材市場を構築するため、産官学が連携して行う取組を補助する制度。</p>
+    <div class="meta"><span class="chip">自動車・リサイクル</span><span class="org">環境省（執行団体：公益財団法人廃棄物・3R研究財団）</span></div>
+    <div class="notewrap"><span class="note">締切8/28</span></div>
+  </div>
+</a><h2 class="band band--later"><span class="band-name">それ以降</span><span class="band-n">36</span></h2>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186881" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>67</b><i>日</i></span>
+    <span class="dl">9/18</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和7年度予算「水インフラにおける脱炭素化推進事業」の四次公募開始</h3>
+    
+    <div class="meta"><span class="org">環境省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181715" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>74</b><i>日</i></span>
+    <span class="dl">9/25</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度「水力発電導入促進支援事業費補助金（事業性評価支援事業）」（新規事業分）</h3>
+    
+    <div class="meta"><span class="org">経済産業省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/174991" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>74</b><i>日</i></span>
+    <span class="dl">9/25</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和7年度補正予算事業「地方誘客促進に向けたインバウンド安全・安心対策推進事業</h3>
+    
+    <div class="meta"><span class="org">観光庁</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183049" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>77</b><i>日</i></span>
+    <span class="dl">9/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">INPIT外国出願補助金</h3>
+    
+    <div class="meta"><span class="org">独立行政法人工業所有権情報・研修館（INPIT）</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/187089" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">小規模事業者持続化補助金（共同・協業型）（第3回）</h3>
+    
+    <div class="meta"><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186853" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">自治体によるSS承継等に向けた取組支援事業</h3>
+    
+    <div class="meta"><span class="org">経済産業省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186642" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">新事業進出・ものづくり商業サービス補助金</h3>
+    
+    <div class="meta"><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184970" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">物流拠点機能強化支援事業費補助金（非常用電源設備の導入補助事業及び災害時の支援物資輸送体制構築促進事業）の公募開始</h3>
+    
+    <div class="meta"><span class="org">国土交通省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183064" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">経営再建支援事業（中小企業者油外収益確保等取組支援事業）</h3>
+    
+    <div class="meta"><span class="org">全国石油商業組合連合会</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183136" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">先進的技術開発等支援事業</h3>
+    
+    <div class="meta"><span class="org">全国石油商業組合連合会</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180871" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度から令和12年度「二国間クレジット制度資金支援事業のうち設備補助事業」（JCM設備補助事業）</h3>
+    
+    <div class="meta"><span class="org">環境省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180271" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">経営再建支援事業（小規模事業者申請用）</h3>
+    
+    <div class="meta"><span class="org">全国石油商業組合連合会</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182542" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>101</b><i>日</i></span>
+    <span class="dl">10/22</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和7年度補正予算・令和8年度予算「業務用建築物ストックの省CO2改修調査支援事業</h3>
+    
+    <div class="meta"><span class="org">環境省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186924" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>109</b><i>日</i></span>
+    <span class="dl">10/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度山岳等受入環境改善等事業費補助金</h3>
+    
+    <div class="meta"><span class="org">環境省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/185161" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>109</b><i>日</i></span>
+    <span class="dl">10/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">新技術活用したサプライチェーン輸送効率化の実証を支援：国交省</h3>
+    
+    <div class="meta"><span class="org">経済産業省・国土交通省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/185793" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>109</b><i>日</i></span>
+    <span class="dl">10/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">再エネ等由来水素を活用した自立・分散型エネルギーシステム構築等事業</h3>
+    
+    <div class="meta"><span class="org">環境省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184325" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>110</b><i>日</i></span>
+    <span class="dl">10/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">エイジフレンドリー補助金</h3>
+    
+    <div class="meta"><span class="org">厚生労働省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184811" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">脱炭素ビルリノベ2026事業</h3>
+    
+    <div class="meta"><span class="org">環境省、一般社団法人 環境共創イニシアチブ</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180225" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">働き方改革推進支援助成金（業種別課題対応コース）</h3>
+    
+    <div class="meta"><span class="org">厚生労働省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180226" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">働き方改革推進支援助成金（労働時間短縮・年休促進支援コース）</h3>
+    
+    <div class="meta"><span class="org">厚生労働省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180228" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">働き方改革推進支援助成金（勤務間インターバル導入コース）</h3>
+    
+    <div class="meta"><span class="org">厚生労働省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180229" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">働き方改革推進支援助成金（取引環境改善コース）</h3>
+    
+    <div class="meta"><span class="org">厚生労働省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180231" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">働き方改革推進支援助成金（団体推進コース）</h3>
+    
+    <div class="meta"><span class="org">厚生労働省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183800" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>155</b><i>日</i></span>
+    <span class="dl">12/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">小規模事業者持続化補助金＜創業型＞（第4回公募）</h3>
+    
+    <div class="meta"><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183798" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>155</b><i>日</i></span>
+    <span class="dl">12/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">商工会議所地区　小規模事業者持続化補助金＜一般型　通常枠＞（第20回公募）</h3>
+    
+    <div class="meta"><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183795" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>155</b><i>日</i></span>
+    <span class="dl">12/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">商工会地区　小規模事業者持続化補助金　一般型・通常枠（第20回公募）</h3>
+    
+    <div class="meta"><span class="org">独立行政法人中小企業基盤整備機構</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181994" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>158</b><i>日</i></span>
+    <span class="dl">12/18</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度二酸化炭素排出抑制対策事業費等補助金（地域共生型廃棄物発電等導入促進事業（うちPCBに汚染された変圧器の高効率化によるCO2削減推進事業））</h3>
+    
+    <div class="meta"><span class="org">環境省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184140" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>168</b><i>日</i></span>
+    <span class="dl">12/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度予算　環境対応型石油製品販売業支援事業（下記5事業）</h3>
+    
+    <div class="meta"><span class="org">一般社団法人全国石油協会</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181468" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>186</b><i>日</i></span>
+    <span class="dl">1/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和7年度補正予算 商用車等の電動化促進事業</h3>
+    
+    <div class="meta"><span class="org">経済産業省・他</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186125" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">事故防止対策支援推進事業に係る補助金の申請受付を開始</h3>
+    
+    <div class="meta"><span class="org">国土交通省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184746" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">低炭素型ディーゼルトラックの導入を支援！</h3>
+    
+    <div class="meta"><span class="org">国土交通省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181470" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和7年度（補正予算）公募　商用車等の電動化促進事業（タクシー・バス）脱炭素成長型経済構造移行推進対策費補助金</h3>
+    
+    <div class="meta"><span class="org">環境省</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/187191" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">&quot;事業承継型&quot;起業の支援</h3>
+    
+    <div class="meta"><span class="org">鳥取県</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186502" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">廃屋撤去・再生による地方温泉地等のまちづくり支援事業</h3>
+    
+    <div class="meta"><span class="org">観光庁</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184662" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>242</b><i>日</i></span>
+    <span class="dl">3/12</span>
+  </div>
+  <div class="body">
+    <h3 class="name">介護情報基盤ポータル</h3>
+    
+    <div class="meta"><span class="org">公益社団法人国民健康保険中央会</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184076" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業（個人事業主を含む）の低濃度PCB廃棄物の適正処理を支援します</h3>
+    
+    <div class="meta"><span class="org">環境省</span></div>
+    
+  </div>
+</a>
+  
+<details class="always">
+  <summary><span>通年・随時受付（締切の記載なし）</span><b>140</b></summary>
+  <div class="mini-list"><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187167" target="_blank" rel="noopener"><span class="mini-name">NEDO懸賞金活用型プログラム</span><span class="mini-org">国立研究開発法人 新エネルギー・産業技術総合開発機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187166" target="_blank" rel="noopener"><span class="mini-name">書店経営者向け支援施策活用ガイド</span><span class="mini-org">経済産業省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187019" target="_blank" rel="noopener"><span class="mini-name">保証料上乗せにより経営者保証の提供を不要とする信用保証制度</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187018" target="_blank" rel="noopener"><span class="mini-name">スタートアップ創出促進保証</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187017" target="_blank" rel="noopener"><span class="mini-name">創業関連保証制度</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187016" target="_blank" rel="noopener"><span class="mini-name">信用保証協会による借換保証</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187015" target="_blank" rel="noopener"><span class="mini-name">災害関係保証</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187013" target="_blank" rel="noopener"><span class="mini-name">セーフティネット保証制度</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187012" target="_blank" rel="noopener"><span class="mini-name">信用保証制度</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187011" target="_blank" rel="noopener"><span class="mini-name">中小企業経営力強化資金融資事業</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/187010" target="_blank" rel="noopener"><span class="mini-name">危機対応後経営安定貸付【日本公庫（中小企業事業）】セーフティネット貸付（危機対応後経営安定資金）【日本公庫（国民生活事業）】</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186937" target="_blank" rel="noopener"><span class="mini-name">セーフティネット貸付</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186933" target="_blank" rel="noopener"><span class="mini-name">高度化事業（災害対策）</span><span class="mini-org">独立行政法人 中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186932" target="_blank" rel="noopener"><span class="mini-name">令和6年能登半島地震特別貸付</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186820" target="_blank" rel="noopener"><span class="mini-name">（令和8年度）中小機構　総合ハンドブック</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186517" target="_blank" rel="noopener"><span class="mini-name">人材確保等支援助成金（中小企業団体助成コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186126" target="_blank" rel="noopener"><span class="mini-name">輸送効率化を通じた更なる省エネ化に必要なシステムや車両に対する導入補助を開始します！</span><span class="mini-org">国土交通省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186021" target="_blank" rel="noopener"><span class="mini-name">小規模事業者経営改善資金融資制度（マル経融資）</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186017" target="_blank" rel="noopener"><span class="mini-name">災害復旧貸付</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186016" target="_blank" rel="noopener"><span class="mini-name">BCP資金</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185931" target="_blank" rel="noopener"><span class="mini-name">中小企業退職金共済制度</span><span class="mini-org">独立行政法人勤労者退職金共済機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185930" target="_blank" rel="noopener"><span class="mini-name">経営セーフティ共済（中小企業倒産防止共済制度）</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185929" target="_blank" rel="noopener"><span class="mini-name">小規模企業共済制度</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185925" target="_blank" rel="noopener"><span class="mini-name">取引先の支払条件改善等のための融資制度</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185806" target="_blank" rel="noopener"><span class="mini-name">グローバルサウス未来志向型共創等事業</span><span class="mini-org">経済産業省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185799" target="_blank" rel="noopener"><span class="mini-name">貿易プラットフォーム活用による貿易手続デジタル化推進事業</span><span class="mini-org">経済産業省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185808" target="_blank" rel="noopener"><span class="mini-name">グローバルサウス未来志向型共創等事業（ウクライナ復興支援に向けた欧州企業連携・中東欧諸国等連携強化）</span><span class="mini-org">経済産業省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/178719" target="_blank" rel="noopener"><span class="mini-name">中東情勢の変化に伴い中小企業・小規模事業者対策を行います</span><span class="mini-org">中小企業庁</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/177366" target="_blank" rel="noopener"><span class="mini-name">雇用就農資金</span><span class="mini-org">農林水産省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185060" target="_blank" rel="noopener"><span class="mini-name">スタンドバイ・クレジット制度</span><span class="mini-org">株式会社日本政策金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185058" target="_blank" rel="noopener"><span class="mini-name">クロスボーダーローン</span><span class="mini-org">株式会社日本政策金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185055" target="_blank" rel="noopener"><span class="mini-name">海外展開・事業再編資金</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185050" target="_blank" rel="noopener"><span class="mini-name">アジア等ゼロエミッション化人材育成等事業費補助金</span><span class="mini-org">経済産業省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185047" target="_blank" rel="noopener"><span class="mini-name">予備自衛官の雇用企業等を支える給付金</span><span class="mini-org">防衛省・自衛隊地方協力本部</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184907" target="_blank" rel="noopener"><span class="mini-name">中東情勢関連対策ポータル</span><span class="mini-org">農林水産省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184793" target="_blank" rel="noopener"><span class="mini-name">雇用就農資金（雇用就農者育成・独立支援タイプ、新法人設立支援タイプ）</span><span class="mini-org">農林水産省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184407" target="_blank" rel="noopener"><span class="mini-name">産業雇用安定助成金（スキルアップ支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184406" target="_blank" rel="noopener"><span class="mini-name">団体経由産業保健活動推進助成金</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184408" target="_blank" rel="noopener"><span class="mini-name">産業雇用安定助成金（産業連携人材確保等支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184409" target="_blank" rel="noopener"><span class="mini-name">地域の人事部支援事業</span><span class="mini-org">経済産業省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184410" target="_blank" rel="noopener"><span class="mini-name">奨学金の代理返還支援</span><span class="mini-org">独立行政法人日本学生支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184323" target="_blank" rel="noopener"><span class="mini-name">働き方改革推進支援資金</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179669" target="_blank" rel="noopener"><span class="mini-name">雇用調整助成金</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183926" target="_blank" rel="noopener"><span class="mini-name">高度安全機械等導入支援補助金</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183921" target="_blank" rel="noopener"><span class="mini-name">障害者能力開発助成金</span><span class="mini-org">独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183454" target="_blank" rel="noopener"><span class="mini-name">農林水産省補助事業 有機JAS認証・GAP等認証取得支援事業</span><span class="mini-org">農林水産省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183119" target="_blank" rel="noopener"><span class="mini-name">重度障害者等通勤対策助成金</span><span class="mini-org">独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183100" target="_blank" rel="noopener"><span class="mini-name">認定職業訓練制度</span><span class="mini-org">都道府県</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183111" target="_blank" rel="noopener"><span class="mini-name">勤労者財産形成促進制度</span><span class="mini-org">厚生労働省・独立行政法人勤労者退職金共済機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183112" target="_blank" rel="noopener"><span class="mini-name">障害者トライアル雇用</span><span class="mini-org">公共職業安定所・都道府県労働局・厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183115" target="_blank" rel="noopener"><span class="mini-name">障害者作業施設設置等助成金</span><span class="mini-org">独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183117" target="_blank" rel="noopener"><span class="mini-name">障害者福祉施設設置等助成金</span><span class="mini-org">独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183118" target="_blank" rel="noopener"><span class="mini-name">障害者介助等助成金、職場適応援助者助成金</span><span class="mini-org">独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183120" target="_blank" rel="noopener"><span class="mini-name">重度障害者多数雇用事業所施設設置等助成金</span><span class="mini-org">独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183177" target="_blank" rel="noopener"><span class="mini-name">医療機関・薬局向けシステム改修補助金</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182879" target="_blank" rel="noopener"><span class="mini-name">建設事業主等に対する助成金</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182735" target="_blank" rel="noopener"><span class="mini-name">最低賃金引上げに向けた中小企業・小規模事業者支援事業</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182736" target="_blank" rel="noopener"><span class="mini-name">受動喫煙防止対策助成金</span><span class="mini-org">各都道府県労働局</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182500" target="_blank" rel="noopener"><span class="mini-name">事業再生円滑化関連保証制度（プレ DIP 保証制度）</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182259" target="_blank" rel="noopener"><span class="mini-name">認定経営革新等支援機関による早期経営改善計画策定支援事業</span><span class="mini-org">各中小企業活性化協議会・独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182261" target="_blank" rel="noopener"><span class="mini-name">中小企業再生ファンド</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182262" target="_blank" rel="noopener"><span class="mini-name">企業再生貸付</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182264" target="_blank" rel="noopener"><span class="mini-name">事業再生保証制度（DIP 保証制度）</span><span class="mini-org">信用保証協会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182084" target="_blank" rel="noopener"><span class="mini-name">INPIT外国出願補助金</span><span class="mini-org">独立行政法人工業所有権情報・研修館（INPIT）</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182085" target="_blank" rel="noopener"><span class="mini-name">海外出願支援事業</span><span class="mini-org">特許庁</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182088" target="_blank" rel="noopener"><span class="mini-name">認定経営革新等支援機関による経営改善計画策定支援事業</span><span class="mini-org">各中小企業活性化協議会・独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182010" target="_blank" rel="noopener"><span class="mini-name">地域ブランド保護に関する支援（地域団体商標制度）</span><span class="mini-org">特許庁・他</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181879" target="_blank" rel="noopener"><span class="mini-name">抜け駆け商標無効・取消係争支援事業</span><span class="mini-org">独立行政法人日本貿易振興機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181881" target="_blank" rel="noopener"><span class="mini-name">海外知財訴訟保険事業</span><span class="mini-org">特許庁</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181883" target="_blank" rel="noopener"><span class="mini-name">特許料等の軽減制度</span><span class="mini-org">特許庁</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181750" target="_blank" rel="noopener"><span class="mini-name">補助金活用ナビ</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181620" target="_blank" rel="noopener"><span class="mini-name">小規模事業者持続化補助金（一般型・通常枠）</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181621" target="_blank" rel="noopener"><span class="mini-name">小規模事業者持続化補助金（共同・協業型）</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181622" target="_blank" rel="noopener"><span class="mini-name">地域未来投資促進法による支援</span><span class="mini-org">経済産業省・他</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181623" target="_blank" rel="noopener"><span class="mini-name">経営革新計画</span><span class="mini-org">中小企業庁・他</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181624" target="_blank" rel="noopener"><span class="mini-name">新たな事業活動を支援する融資制度等</span><span class="mini-org">株式会社日本政策金融公庫・他</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181625" target="_blank" rel="noopener"><span class="mini-name">伝統的工芸品産業支援補助金</span><span class="mini-org">経済産業省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181626" target="_blank" rel="noopener"><span class="mini-name">中小企業成長加速化補助金</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181633" target="_blank" rel="noopener"><span class="mini-name">模倣品対策支援事業</span><span class="mini-org">独立行政法人 日本貿易振興機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181634" target="_blank" rel="noopener"><span class="mini-name">防衛型侵害対策支援事業</span><span class="mini-org">独立行政法人日本貿易振興機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181374" target="_blank" rel="noopener"><span class="mini-name">中小企業成長支援ファンド/中小企業経営力強化支援ファンド/ 中小グループ化・事業再構築支援ファンド/100 億企業育成ファンド</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181513" target="_blank" rel="noopener"><span class="mini-name">地方創生起業支援事業</span><span class="mini-org">内閣府</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181521" target="_blank" rel="noopener"><span class="mini-name">中小企業組合等課題対応支援事業補助金</span><span class="mini-org">全国中小企業団体中央会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181526" target="_blank" rel="noopener"><span class="mini-name">中小企業省力化投資補助事業</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181371" target="_blank" rel="noopener"><span class="mini-name">小規模事業者持続化補助金（創業型）</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181372" target="_blank" rel="noopener"><span class="mini-name">起業支援ファンド</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181375" target="_blank" rel="noopener"><span class="mini-name">中小企業投資育成株式会社による投資</span><span class="mini-org">東京中小企業投資育成株式会社・名古屋中小企業投資育成株式会社・大阪中小企業投資育成株式会社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181376" target="_blank" rel="noopener"><span class="mini-name">ディープテック・スタートアップ支援事業</span><span class="mini-org">国立研究開発法人 新エネルギー・産業技術総合開発機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181378" target="_blank" rel="noopener"><span class="mini-name">ローカル10,000プロジェクト（地域経済循環創造事業交付金）</span><span class="mini-org">総務省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181238" target="_blank" rel="noopener"><span class="mini-name">成長型中小企業等研究開発支援事業（Go-Tech 事業）</span><span class="mini-org">経済産業省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181240" target="_blank" rel="noopener"><span class="mini-name">デジタル化・AI 導入補助金</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181241" target="_blank" rel="noopener"><span class="mini-name">SBIR制度に基づく支援</span><span class="mini-org">内閣府・他</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181242" target="_blank" rel="noopener"><span class="mini-name">省エネ関連設備の導入等に対する支援</span><span class="mini-org">資源エネルギー庁</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181245" target="_blank" rel="noopener"><span class="mini-name">グリーントランスフォーメーション関連融資</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181246" target="_blank" rel="noopener"><span class="mini-name">創業支援貸付利率特例制度</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181248" target="_blank" rel="noopener"><span class="mini-name">新規開業・スタートアップ支援資金</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181249" target="_blank" rel="noopener"><span class="mini-name">女性、若者/シニア起業家支援資金</span><span class="mini-org">株式会社日本政策金融公庫・沖縄振興開発金融公庫</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181156" target="_blank" rel="noopener"><span class="mini-name">2026年度版中小企業施策利用ガイドブック</span><span class="mini-org">経済産業省・中小企業庁・他</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181157" target="_blank" rel="noopener"><span class="mini-name">新事業進出・ものづくり商業サービス補助金</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180951" target="_blank" rel="noopener"><span class="mini-name">誰もが安心して暮らせるためのモデル的な取組を行う事業者を支援します！</span><span class="mini-org">国土交通省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180433" target="_blank" rel="noopener"><span class="mini-name">両立支援等助成金（育休中等業務代替支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180434" target="_blank" rel="noopener"><span class="mini-name">両立支援等助成金（柔軟な働き方選択制度等支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180435" target="_blank" rel="noopener"><span class="mini-name">両立支援等助成金（不妊治療及び女性の健康課題対応両立支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180436" target="_blank" rel="noopener"><span class="mini-name">人材開発支援助成金（人材育成支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180437" target="_blank" rel="noopener"><span class="mini-name">人材開発支援助成金（教育訓練休暇等付与コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180438" target="_blank" rel="noopener"><span class="mini-name">人材開発支援助成金（人への投資促進コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180439" target="_blank" rel="noopener"><span class="mini-name">人材開発支援助成金（事業展開等リスキリング支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180329" target="_blank" rel="noopener"><span class="mini-name">両立支援等助成金（出生時両立支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180332" target="_blank" rel="noopener"><span class="mini-name">両立支援等助成金（介護離職防止支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180335" target="_blank" rel="noopener"><span class="mini-name">両立支援等助成金（育児休業等支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180183" target="_blank" rel="noopener"><span class="mini-name">早期再就職支援等助成金（再就職支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180184" target="_blank" rel="noopener"><span class="mini-name">早期再就職支援等助成金（雇入れ支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180185" target="_blank" rel="noopener"><span class="mini-name">早期再就職支援等助成金（中途採用拡大コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180186" target="_blank" rel="noopener"><span class="mini-name">トライアル雇用助成金（一般トライアルコース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180187" target="_blank" rel="noopener"><span class="mini-name">障害者トライアルコース・障害者短時間トライアルコース</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180188" target="_blank" rel="noopener"><span class="mini-name">トライアル雇用助成金（若年・女性建設労働者トライアルコース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180190" target="_blank" rel="noopener"><span class="mini-name">人材確保等支援助成金（若年者及び女性に魅力ある職場づくり事業コース（建設分野））</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180191" target="_blank" rel="noopener"><span class="mini-name">人材確保等支援助成金（建設キャリアアップシステム等活用促進コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180192" target="_blank" rel="noopener"><span class="mini-name">人材開発支援助成金（建設労働者認定訓練コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180193" target="_blank" rel="noopener"><span class="mini-name">人材開発支援助成金（建設労働者技能実習コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180194" target="_blank" rel="noopener"><span class="mini-name">人材確保等支援助成金（雇用管理制度・雇用環境整備助成コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180195" target="_blank" rel="noopener"><span class="mini-name">人材確保等支援助成金（外国人労働者就労環境整備助成コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180196" target="_blank" rel="noopener"><span class="mini-name">人材確保等支援助成金（テレワークコース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180198" target="_blank" rel="noopener"><span class="mini-name">65歳超雇用推進助成金（65歳超継続雇用促進コース）</span><span class="mini-org">厚生労働省・独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180199" target="_blank" rel="noopener"><span class="mini-name">65歳超雇用推進助成金（高年齢者評価制度等雇用管理改善コース）</span><span class="mini-org">厚生労働省・独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180200" target="_blank" rel="noopener"><span class="mini-name">65歳超雇用推進助成金（高年齢者無期雇用転換コース）</span><span class="mini-org">厚生労働省・独立行政法人高齢・障害・求職者雇用支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180201" target="_blank" rel="noopener"><span class="mini-name">キャリアアップ助成金（正社員化コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180202" target="_blank" rel="noopener"><span class="mini-name">キャリアアップ助成金（障害者正社員化コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180203" target="_blank" rel="noopener"><span class="mini-name">キャリアアップ助成金（賃金規定等改定コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180204" target="_blank" rel="noopener"><span class="mini-name">キャリアアップ助成金（賃金規定等共通化コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180205" target="_blank" rel="noopener"><span class="mini-name">キャリアアップ助成金（賞与・退職金制度導入コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180206" target="_blank" rel="noopener"><span class="mini-name">キャリアアップ助成金（短時間労働者労働時間延長支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180135" target="_blank" rel="noopener"><span class="mini-name">中小企業省力化投資補助金（カタログ注文型）</span><span class="mini-org">独立行政法人中小企業基盤整備機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179670" target="_blank" rel="noopener"><span class="mini-name">特定求職者雇用開発助成金（特定就職困難者コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179671" target="_blank" rel="noopener"><span class="mini-name">特定求職者雇用開発助成金（発達障害者・難治性疾患患者雇用開発コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179672" target="_blank" rel="noopener"><span class="mini-name">特定求職者雇用開発助成金（中高年層安定雇用支援コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179673" target="_blank" rel="noopener"><span class="mini-name">特定求職者雇用開発助成金（生活保護受給者等雇用開発コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179674" target="_blank" rel="noopener"><span class="mini-name">地域雇用開発助成金（地域雇用開発コース）</span><span class="mini-org">厚生労働省</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/158950" target="_blank" rel="noopener"><span class="mini-name">せとうち備讃諸島日本遺産構成文化財企画旅行造成事業補助金</span><span class="mini-org">せとうち備讃諸島日本遺産推進協議会</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/150869" target="_blank" rel="noopener"><span class="mini-name">物価高や人手不足等の影響を受けている中小企業者に向けた新しい保証制度の取扱い</span><span class="mini-org">中小企業庁</span></a></div>
+</details>
+</section>
+<section class="panel" id="panel-tokyo" role="tabpanel" hidden>
+  <h2 class="band band--urgent"><span class="band-name">今週中</span><span class="band-n">3</span></h2>
+<a class="row row--urgent" href="https://j-net21.smrj.go.jp/snavi2/articles/183290" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>2</b><i>日</i></span>
+    <span class="dl">7/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">ドローンを活用したツアー造成等支援補助金</h3>
+    <p class="sum">ドローンによる空撮映像などを活用した新しい観光ツアーの企画・造成にかかる費用を補助する制度。</p>
+    <div class="meta"><span class="chip">観光・旅行業</span><span class="org">東京都</span></div>
+    <div class="notewrap"><span class="note">東京都。締切7/15</span></div>
+  </div>
+</a>
+<a class="row row--urgent" href="https://j-net21.smrj.go.jp/snavi2/articles/180409" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>2</b><i>日</i></span>
+    <span class="dl">7/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">グローバルニッチトップ助成事業（令和8年度）</h3>
+    <p class="sum">特定分野で高い世界シェアを持つ、または目指す中小企業の製品開発・販路開拓を助成する制度。</p>
+    <div class="meta"><span class="chip">製造業・技術系</span><span class="org">公益財団法人東京都中小企業振興公社</span></div>
+    <div class="notewrap"><span class="note">東京都。締切7/15</span></div>
+  </div>
+</a>
+<a class="row row--urgent" href="https://j-net21.smrj.go.jp/snavi2/articles/182974" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>4</b><i>日</i></span>
+    <span class="dl">7/17</span>
+  </div>
+  <div class="body">
+    <h3 class="name">小平市事業者物価高騰応援金（令和8年度）</h3>
+    <p class="sum">物価高騰の影響を受けた市内事業者の経営を下支えするための応援金。</p>
+    <div class="meta"><span class="chip">小平市の事業者</span><span class="org">小平市</span></div>
+    <div class="notewrap"><span class="note">締切7/17</span></div>
+  </div>
+</a><h2 class="band band--soon"><span class="band-name">今月中</span><span class="band-n">5</span></h2>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/184770" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>10</b><i>日</i></span>
+    <span class="dl">7/23</span>
+  </div>
+  <div class="body">
+    <h3 class="name">躍進的な事業推進のための設備投資支援事業（第13回／令和8年度第2回）</h3>
+    <p class="sum">生産性向上のための機械設備やソフトウェアの導入費を、業種を問わず幅広く支援する制度。</p>
+    <div class="meta"><span class="chip">全業種（東京）</span><span class="org">公益財団法人東京都中小企業振興公社、東京都</span></div>
+    <div class="notewrap"><span class="note">東京都。締切7/23。設備投資の定番制度</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/187129" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">東京都都市緑化基金 「街かど緑化支援」事業</h3>
+    <p class="sum">敷地の緑化整備など、街なかの緑を増やす取組に対する支援制度。</p>
+    <div class="meta"><span class="chip">不動産・建設（東京）</span><span class="org">公益財団法人東京都公園協会</span></div>
+    <div class="notewrap"><span class="note">東京都。締切7/31</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/186170" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中東情勢による原材料価格高騰に伴う経営基盤安定化緊急対策事業</h3>
+    <p class="sum">中東情勢に起因する原材料価格の高騰で影響を受けた企業の、経営基盤の安定化を支援する制度。</p>
+    <div class="meta"><span class="chip">製造業ほか（東京）</span><span class="org">公益財団法人 東京都中小企業振興公社</span></div>
+    <div class="notewrap"><span class="note">東京都。締切7/31</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/184572" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度新規事業　多摩・島しょ地域の土産品や食の磨き上げ・魅力発信に向けた取組を支援します 土産品等を活用した多摩・島しょ観光プロモーション事業助成金</h3>
+    <p class="sum">多摩・島しょ地域の土産品や食の商品力向上、魅力発信の取組を支援する制度。</p>
+    <div class="meta"><span class="chip">食品・観光（多摩島しょ）</span><span class="org">東京都・公益財団法人 東京観光財団</span></div>
+    <div class="notewrap"><span class="note">東京都。締切7/31</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/184286" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">三鷹商工会中小企業等産業活性化補助金（令和8年度）</h3>
+    <p class="sum">三鷹商工会が実施する、市内中小企業の新たな事業展開や設備投資への補助制度。</p>
+    <div class="meta"><span class="chip">三鷹市の事業者</span><span class="org">三鷹市</span></div>
+    <div class="notewrap"><span class="note">締切7/31</span></div>
+  </div>
+</a><h2 class="band band--mid"><span class="band-name">2か月以内</span><span class="band-n">18</span></h2>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/184081" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>32</b><i>日</i></span>
+    <span class="dl">8/14</span>
+  </div>
+  <div class="body">
+    <h3 class="name">日の出町創業支援補助金</h3>
+    <p class="sum">町内での創業にかかる費用を補助する制度。</p>
+    <div class="meta"><span class="chip">創業者（日の出町）</span><span class="org">日の出町</span></div>
+    <div class="notewrap"><span class="note">締切8/14</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/183829" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>32</b><i>日</i></span>
+    <span class="dl">8/14</span>
+  </div>
+  <div class="body">
+    <h3 class="name">観光地におけるAI等先端技術実装支援補助金</h3>
+    <p class="sum">観光地においてAIなどの先端技術を実際に導入する取組を補助する制度。セミナーも開催。</p>
+    <div class="meta"><span class="chip">観光・IT</span><span class="org">東京都</span></div>
+    <div class="notewrap"><span class="note">東京都。締切8/14</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/184623" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>37</b><i>日</i></span>
+    <span class="dl">8/19</span>
+  </div>
+  <div class="body">
+    <h3 class="name">子供を事故から守る環境づくり促進事業</h3>
+    <p class="sum">子供の事故を防ぐ製品開発や環境整備の取組を支援する制度。</p>
+    <div class="meta"><span class="chip">保育・製品開発</span><span class="org">東京都</span></div>
+    <div class="notewrap"><span class="note">東京都。締切8/19</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/186004" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>39</b><i>日</i></span>
+    <span class="dl">8/21</span>
+  </div>
+  <div class="body">
+    <h3 class="name">日野市未来につなげる農業支援事業補助金（二次募集）</h3>
+    <p class="sum">市内農業者の設備導入や経営改善を支援する補助制度。二次募集。</p>
+    <div class="meta"><span class="chip">農業（日野市）</span><span class="org">日野市</span></div>
+    <div class="notewrap"><span class="note">締切8/21</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/180902" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>42</b><i>日</i></span>
+    <span class="dl">8/24</span>
+  </div>
+  <div class="body">
+    <h3 class="name">脱炭素推進助成金（住宅向け・事業所向け）（旧エコ助成金）</h3>
+    <p class="sum">事業所への省エネ設備や再エネ設備の導入費を助成する制度（旧エコ助成金）。</p>
+    <div class="meta"><span class="chip">台東区の事業者</span><span class="org">台東区</span></div>
+    <div class="notewrap"><span class="note">締切8/24</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/183661" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>46</b><i>日</i></span>
+    <span class="dl">8/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">多摩・島しょ地域資源承継支援助成金</h3>
+    <p class="sum">多摩・島しょ地域の地域資源や技術を次世代へ承継する取組を助成する制度。</p>
+    <div class="meta"><span class="chip">多摩島しょの事業者</span><span class="org">東京都</span></div>
+    <div class="notewrap"><span class="note">締切8/28</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/180927" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>46</b><i>日</i></span>
+    <span class="dl">8/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">ものづくり企業地域共生推進助成事業</h3>
+    <p class="sum">ものづくり企業が地域と共生するための環境対策や設備更新を助成する制度。</p>
+    <div class="meta"><span class="chip">製造業（立川市）</span><span class="org">立川市</span></div>
+    <div class="notewrap"><span class="note">締切8/28</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/184634" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">八王子市物価高騰対応事業者支援金</h3>
+    <p class="sum">物価高騰の影響を受けた市内事業者への支援金。</p>
+    <div class="meta"><span class="chip">八王子市の事業者</span><span class="org">八王子市</span></div>
+    <div class="notewrap"><span class="note">締切8/31</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/184468" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">ゼロエミ推進製品・サービス等の販路拡大助成【ゼロエミ販路】</h3>
+    <p class="sum">環境負荷の低い製品・サービスの展示会出展など、販路拡大の取組を助成する制度。</p>
+    <div class="meta"><span class="chip">環境関連製品を持つ企業</span><span class="org">公益財団法人東京都中小企業振興公社</span></div>
+    <div class="notewrap"><span class="note">東京都。締切8/31</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/182997" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業収益力強化サポート事業</h3>
+    <p class="sum">専門家の支援を受けながら、収益力の強化に取り組む中小企業を支援する制度。</p>
+    <div class="meta"><span class="chip">全業種（東京）</span><span class="org">公益財団法人東京都中小企業振興公社</span></div>
+    <div class="notewrap"><span class="note">東京都。締切8/31。専門家派遣型</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/183000" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">第6回 中小企業特別高圧電力・工業用LPガス価格高騰緊急対策事業支援金</h3>
+    <p class="sum">特別高圧電力や工業用LPガスの価格高騰による負担を軽減する支援金。第6回。</p>
+    <div class="meta"><span class="chip">工場・製造業（東京）</span><span class="org">公益財団法人 東京都中小企業振興公社</span></div>
+    <div class="notewrap"><span class="note">東京都。締切8/31。電気代高騰対策</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/180388" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業等の展示会への出展費用を補助します（令和8年度上半期分）</h3>
+    <p class="sum">販路開拓のための展示会・見本市への出展費用を補助する制度（上半期分）。</p>
+    <div class="meta"><span class="chip">中央区の事業者</span><span class="org">中央区</span></div>
+    <div class="notewrap"><span class="note">締切8/31</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/180039" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">第6回 中小企業特別高圧電力・工業用LPガス価格高騰緊急対策事業 特別高圧電力及び工業用LPガスを使用する中小企業者等を支援します！</h3>
+    <p class="sum">特別高圧電力の価格高騰による負担を軽減する緊急対策事業。第6回。</p>
+    <div class="meta"><span class="chip">工場・製造業（東京）</span><span class="org">東京都、公益財団法人 東京都中小企業振興公社</span></div>
+    <div class="notewrap"><span class="note">東京都。締切8/31</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/158823" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">足立区運輸事業者エネルギー価格高騰対策支援金</h3>
+    <p class="sum">運輸事業者の燃料など、エネルギー価格高騰による負担を軽減する支援金。</p>
+    <div class="meta"><span class="chip">運輸業（足立区）</span><span class="org">足立区</span></div>
+    <div class="notewrap"><span class="note">締切8/31</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/186456" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>53</b><i>日</i></span>
+    <span class="dl">9/4</span>
+  </div>
+  <div class="body">
+    <h3 class="name">デジタル技術活用促進助成事業（DX導入）【第2回募集受付】</h3>
+    <p class="sum">業務のデジタル化・DX推進のためのツール導入費などを助成する制度。第2回募集。</p>
+    <div class="meta"><span class="chip">全業種（江戸川区）</span><span class="org">江戸川区</span></div>
+    <div class="notewrap"><span class="note">締切9/4。DX導入</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/183002" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>57</b><i>日</i></span>
+    <span class="dl">9/8</span>
+  </div>
+  <div class="body">
+    <h3 class="name">ゼロエミッション推進に向けた事業転換支援事業 （製品開発助成）</h3>
+    <p class="sum">脱炭素分野への事業転換に向けた新製品の開発費を助成する制度。</p>
+    <div class="meta"><span class="chip">製造業（東京）</span><span class="org">公益財団法人 東京都中小企業振興公社</span></div>
+    <div class="notewrap"><span class="note">東京都。締切9/8</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/181681" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>57</b><i>日</i></span>
+    <span class="dl">9/8</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度　ゼロエミッション推進に向けた事業転換支援事業（製品開発助成）募集開始！</h3>
+    <p class="sum">ゼロエミッション分野への事業転換に伴う製品開発を助成する制度。</p>
+    <div class="meta"><span class="chip">製造業（東京）</span><span class="org">東京都</span></div>
+    <div class="notewrap"><span class="note">東京都。締切9/8</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/180403" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>60</b><i>日</i></span>
+    <span class="dl">9/11</span>
+  </div>
+  <div class="body">
+    <h3 class="name">経営力強化に向けた創意工夫チャレンジ促進事業 ＜飲食事業者向け経営基盤強化支援（受動喫煙防止対策支援コース）＞</h3>
+    <p class="sum">飲食事業者が経営基盤を強化するための創意工夫ある取組を支援する制度。</p>
+    <div class="meta"><span class="chip">飲食業（東京）</span><span class="org">公益財団法人東京都中小企業振興公社</span></div>
+    <div class="notewrap"><span class="note">東京都。締切9/11</span></div>
+  </div>
+</a><h2 class="band band--later"><span class="band-name">それ以降</span><span class="band-n">69</span></h2>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181674" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>63</b><i>日</i></span>
+    <span class="dl">9/14</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度新規・拡充事業　持続可能な東京農業の実現に向けた農業者の取り組みを支援します</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184524" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中東情勢対応資金</h3>
+    
+    <div class="meta"><span class="org">中野区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182315" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">商店街デジタル化推進事業</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182136" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度農業者物価高騰等緊急支援金</h3>
+    
+    <div class="meta"><span class="org">立川市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179259" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>79</b><i>日</i></span>
+    <span class="dl">9/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">事業者物価高騰緊急対策助成金</h3>
+    
+    <div class="meta"><span class="org">羽村市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180405" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>80</b><i>日</i></span>
+    <span class="dl">10/1</span>
+  </div>
+  <div class="body">
+    <h3 class="name">外国著作権登録費用助成事業（令和8年度）</h3>
+    
+    <div class="meta"><span class="org">公益財団法人東京都中小企業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180406" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>80</b><i>日</i></span>
+    <span class="dl">10/1</span>
+  </div>
+  <div class="body">
+    <h3 class="name">特許調査費用助成事業（令和8年度）</h3>
+    
+    <div class="meta"><span class="org">公益財団法人東京都中小企業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180407" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>80</b><i>日</i></span>
+    <span class="dl">10/1</span>
+  </div>
+  <div class="body">
+    <h3 class="name">外国侵害調査費用助成事業（令和8年度）</h3>
+    
+    <div class="meta"><span class="org">公益財団法人東京都中小企業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/187003" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>87</b><i>日</i></span>
+    <span class="dl">10/8</span>
+  </div>
+  <div class="body">
+    <h3 class="name">創業助成事業</h3>
+    
+    <div class="meta"><span class="org">東京都・公益財団法人東京都中小企業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186169" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>88</b><i>日</i></span>
+    <span class="dl">10/9</span>
+  </div>
+  <div class="body">
+    <h3 class="name">非石油由来製品等開発支援事業 石油供給不足に伴う課題解決に向けた製品・サービス等の開発・改良助成</h3>
+    
+    <div class="meta"><span class="org">公益財団法人 東京都中小企業振興公社・東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/185360" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>109</b><i>日</i></span>
+    <span class="dl">10/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中東情勢対策緊急資金</h3>
+    
+    <div class="meta"><span class="org">墨田区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184137" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>109</b><i>日</i></span>
+    <span class="dl">10/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度江東区エネルギー価格高騰対策補助金</h3>
+    
+    <div class="meta"><span class="org">江東区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180645" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>110</b><i>日</i></span>
+    <span class="dl">10/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度 非正規から正規へ転換した人材の定着を後押し「正規雇用転換安定化支援助成金」の申請受付開始</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180646" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>110</b><i>日</i></span>
+    <span class="dl">10/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度 就職氷河期世代・シニア世代の安定就業を後押し 「就職氷河期世代等安定就業サポート助成金」の申請受付開始</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180647" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>110</b><i>日</i></span>
+    <span class="dl">10/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度 若者の早期職場定着を後押し 「若者世代職場定着促進助成金」の申請受付開始</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186913" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>120</b><i>日</i></span>
+    <span class="dl">11/10</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度 社会実装参画による多摩イノベーション創出事業</h3>
+    
+    <div class="meta"><span class="org">公益財団法人 東京都中小企業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/187000" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>123</b><i>日</i></span>
+    <span class="dl">11/13</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度 課題解決型技術開発促進事業 –都市課題の解決に向けた製品・サービスの開発・改良を支援–</h3>
+    
+    <div class="meta"><span class="org">公益財団法人 東京都中小企業振興公社・東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186645" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">デジタル技術活用支援事業補助金</h3>
+    
+    <div class="meta"><span class="org">立川市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/185223" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">商店街防災力向上緊急支援事業の募集開始　商店街の防災力向上を支援します</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180372" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業のデジタル化を応援します！デジタル技術活用支援補助金</h3>
+    
+    <div class="meta"><span class="org">墨田区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180404" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>141</b><i>日</i></span>
+    <span class="dl">12/1</span>
+  </div>
+  <div class="body">
+    <h3 class="name">海外商標対策支援助成事業（令和8年度）</h3>
+    
+    <div class="meta"><span class="org">公益財団法人東京都中小企業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183017" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>151</b><i>日</i></span>
+    <span class="dl">12/11</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度　板橋区魅力ある個店の連携事業補助金</h3>
+    
+    <div class="meta"><span class="org">公益財団法人 板橋区産業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186438" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>155</b><i>日</i></span>
+    <span class="dl">12/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度にケアプランデータ連携システム活用促進事業</h3>
+    
+    <div class="meta"><span class="org">八王子市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/175540" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>157</b><i>日</i></span>
+    <span class="dl">12/17</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度「中小企業人材確保のための奨学金返還支援事業」 登録企業を募集します！</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183528" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>161</b><i>日</i></span>
+    <span class="dl">12/21</span>
+  </div>
+  <div class="body">
+    <h3 class="name">働きやすい職場の環境づくりを応援します！（墨田区人材確保・定着支援補助金）</h3>
+    
+    <div class="meta"><span class="org">墨田区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180472" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>161</b><i>日</i></span>
+    <span class="dl">12/21</span>
+  </div>
+  <div class="body">
+    <h3 class="name">暑熱な環境での作業における熱中症予防対策の取組を支援します！【墨田区人材確保・定着支援補助（熱中症対策）】</h3>
+    
+    <div class="meta"><span class="org">墨田区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180043" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>165</b><i>日</i></span>
+    <span class="dl">12/25</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度　中小企業組合等新戦略支援事業ネクスト　申込受付開始 （中小企業新戦略・事業承継支援事業（団体向け））</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186235" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>168</b><i>日</i></span>
+    <span class="dl">12/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">事業所における備蓄物資購入の費用助成</h3>
+    
+    <div class="meta"><span class="org">千代田区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180461" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>168</b><i>日</i></span>
+    <span class="dl">12/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">【令和8年度分の申請受付中】LED照明器具導入支援</h3>
+    
+    <div class="meta"><span class="org">墨田区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180239" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>185</b><i>日</i></span>
+    <span class="dl">1/14</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度 中小企業の外国人従業員に対する研修等支援助成金募集の受付を開始します！</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179149" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>185</b><i>日</i></span>
+    <span class="dl">1/14</span>
+  </div>
+  <div class="body">
+    <h3 class="name">展示会出展助成の募集を開始します！</h3>
+    
+    <div class="meta"><span class="org">東京都、公益財団法人 東京都中小企業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/185966" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">港区チャレンジ商店街店舗応援事業補助金</h3>
+    
+    <div class="meta"><span class="org">港区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182318" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">プロジェクションマッピングやドローンショーを行う取組を支援します！</h3>
+    
+    <div class="meta"><span class="org">東京都、公益財団法人東京観光財団</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180387" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業の技術者が高度な研修を受講する際の費用を助成します</h3>
+    
+    <div class="meta"><span class="org">中央区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180389" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業のホームページ作成費用を補助します</h3>
+    
+    <div class="meta"><span class="org">中央区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180390" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中央区経営セーフティ共済加入補助金</h3>
+    
+    <div class="meta"><span class="org">中央区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182445" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>207</b><i>日</i></span>
+    <span class="dl">2/5</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度テレワークトータルサポート助成金概要</h3>
+    
+    <div class="meta"><span class="org">公益財団法人東京しごと財団</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184087" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度目黒区インキュベーションオフィス等利用促進補助金</h3>
+    
+    <div class="meta"><span class="org">目黒区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183802" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度新規事業 育児・介護との両立のためのテレワーク活用促進奨励金の申込受付</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182322" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">テレワークとオフィス勤務のベストバランス推進事業</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180375" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">葛飾区デジタル化支援事業費補助金</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180376" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">人材確保・人材定着支援事業費助成</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180378" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">ホームページ作成費補助</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180379" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">見本市出展費補助事業</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184818" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>230</b><i>日</i></span>
+    <span class="dl">2/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">【人材育成担当者必見！】令和8年度スキルアップ助成金 申請受付中！</h3>
+    
+    <div class="meta"><span class="org">公益財団法人東京しごと財団</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182089" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>230</b><i>日</i></span>
+    <span class="dl">2/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度資格取得サポート助成金</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183015" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>235</b><i>日</i></span>
+    <span class="dl">3/5</span>
+  </div>
+  <div class="body">
+    <h3 class="name">知的財産取得支援事業補助金（令和8年度のご案内）</h3>
+    
+    <div class="meta"><span class="org">公益財団法人 板橋区産業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180463" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>240</b><i>日</i></span>
+    <span class="dl">3/10</span>
+  </div>
+  <div class="body">
+    <h3 class="name">区内生産品等販路拡張事業補助金</h3>
+    
+    <div class="meta"><span class="org">墨田区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183022" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>242</b><i>日</i></span>
+    <span class="dl">3/12</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度 公設試験研究機関等利用助成金</h3>
+    
+    <div class="meta"><span class="org">公益財団法人 板橋区産業振興公社</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180374" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>245</b><i>日</i></span>
+    <span class="dl">3/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">機械設備メンテナンス等助成</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186556" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>249</b><i>日</i></span>
+    <span class="dl">3/19</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度SDGsファイナンス促進支援事業の開始</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180377" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>256</b><i>日</i></span>
+    <span class="dl">3/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">製品性能試験費用補助事業</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180380" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>256</b><i>日</i></span>
+    <span class="dl">3/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">知的所有権取得費補助事業</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180382" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>256</b><i>日</i></span>
+    <span class="dl">3/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">動力プレス機械自主検査補助金</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180383" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>256</b><i>日</i></span>
+    <span class="dl">3/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">産業人材育成支援補助事業（1）大学・訓練等</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180384" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>256</b><i>日</i></span>
+    <span class="dl">3/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">産業人材育成支援補助事業（2）物流・建設事業者支援</h3>
+    
+    <div class="meta"><span class="org">葛飾区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184581" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">新規事業　カーボンクレジット創出に必要な登録・認証に係る費用を支援 「カーボンクレジット創出支援事業」を新たに開始します！</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/183339" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">新規事業 多摩の宿泊施設への移動のバリアフリー化を支援「多摩地域における宿泊施設の送迎車バリアフリー化支援補助金」募集開始</h3>
+    
+    <div class="meta"><span class="org">東京都、公益財団法人東京観光財団</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182301" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">宿泊施設バリアフリー化支援補助金</h3>
+    
+    <div class="meta"><span class="org">東京都、公益財団法人東京観光財団</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180641" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">需給最適化に向けたエネルギーマネジメント推進事業</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180642" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">コージェネレーションシステム導入支援事業</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180465" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">依頼試験等利用補助金</h3>
+    
+    <div class="meta"><span class="org">墨田区</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180041" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">介護休業取得応援奨励金</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180042" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">カーボンクレジットによる製品・サービスなどの付加価値向上をサポート 「カーボンクレジット活用促進事業」令和8年度申請受付の開始をお知らせします</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179344" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">地産地消型再エネ・蓄エネ設備導入促進事業</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179345" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度「島しょ地域における再エネ導入促進事業</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179346" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">再エネ電源都外調達事業（都外PPA）</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179349" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度 EVバス・EVトラック購入補助金 4月30日から申請受付開始</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179353" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度シェアリング・レンタル用ZEV車両購入補助金　4月30日から申請受付開始</h3>
+    
+    <div class="meta"><span class="org">東京都</span></div>
+    
+  </div>
+</a>
+  
+<details class="always">
+  <summary><span>通年・随時受付（締切の記載なし）</span><b>59</b></summary>
+  <div class="mini-list"><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186931" target="_blank" rel="noopener"><span class="mini-name">卵子凍結に係る職場環境整備奨励金</span><span class="mini-org">東京都</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186909" target="_blank" rel="noopener"><span class="mini-name">環境に配慮したマルチエネルギーステーション化に向けた経営力強化・設備導入等支援事業</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186908" target="_blank" rel="noopener"><span class="mini-name">経営力強化に向けた創意工夫チャレンジ促進事業 （業務改善コース）</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186907" target="_blank" rel="noopener"><span class="mini-name">経営力強化に向けた創意工夫チャレンジ促進事業 （賃上げ重点コース）</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186888" target="_blank" rel="noopener"><span class="mini-name">中小企業のための融資制度　ご案内</span><span class="mini-org">板橋区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186884" target="_blank" rel="noopener"><span class="mini-name">小規模事業者経営改善資金（マル経融資）利子補給制度</span><span class="mini-org">板橋区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186453" target="_blank" rel="noopener"><span class="mini-name">江東区人材確保及び定着に向けた奨学金返還支援事業補助金</span><span class="mini-org">江東区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186225" target="_blank" rel="noopener"><span class="mini-name">千代田区商工融資あっせん制度</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186164" target="_blank" rel="noopener"><span class="mini-name">経営力強化に向けた創意工夫チャレンジ促進事業 （新市場・新分野進出コース）</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186219" target="_blank" rel="noopener"><span class="mini-name">産業財産権取得支援事業</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186220" target="_blank" rel="noopener"><span class="mini-name">中小企業 仕事と家庭の両立支援</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186221" target="_blank" rel="noopener"><span class="mini-name">次世代育成支援行動計画策定奨励金</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186222" target="_blank" rel="noopener"><span class="mini-name">オンライン展示会への出展も対象！中小企業販路拡大事業支援補助（展示会出展に対する補助金）</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186224" target="_blank" rel="noopener"><span class="mini-name">区内で障害者を雇用する人等への援助金</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186233" target="_blank" rel="noopener"><span class="mini-name">千代田区商工融資あっせん制度（起業資金）</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186236" target="_blank" rel="noopener"><span class="mini-name">公衆喫煙所設置助成事業の概要</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186239" target="_blank" rel="noopener"><span class="mini-name">中小企業と商店街等の支援</span><span class="mini-org">千代田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186093" target="_blank" rel="noopener"><span class="mini-name">地域資源活用製品等の開発・販売促進事業</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186013" target="_blank" rel="noopener"><span class="mini-name">葛飾区中小企業融資あっせん制度</span><span class="mini-org">葛飾区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186012" target="_blank" rel="noopener"><span class="mini-name">令和8年度　東京都中小企業制度融資　中東情勢の影響を受ける中小企業の資金繰り支援を拡充</span><span class="mini-org">東京都</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185128" target="_blank" rel="noopener"><span class="mini-name">葛飾区介護サービス事業所等ICT化促進費助成金</span><span class="mini-org">葛飾区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185015" target="_blank" rel="noopener"><span class="mini-name">障害者相談支援事業所運営費補助金</span><span class="mini-org">葛飾区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184584" target="_blank" rel="noopener"><span class="mini-name">事業承継支援助成金募集</span><span class="mini-org">東京都</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184458" target="_blank" rel="noopener"><span class="mini-name">葛飾区地域密着型介護事業所職員宿舎借上支援事業</span><span class="mini-org">葛飾区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183971" target="_blank" rel="noopener"><span class="mini-name">令和8年度　東京都中小企業制度融資 中東情勢の影響を受ける中小企業の資金繰りを迅速に支援</span><span class="mini-org">東京都</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183883" target="_blank" rel="noopener"><span class="mini-name">森と木の利活用促進支援事業</span><span class="mini-org">東京都</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183881" target="_blank" rel="noopener"><span class="mini-name">課題解決型製品・サービス等の販路拡大助成【課題解決販路】</span><span class="mini-org">公益財団法人 東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183697" target="_blank" rel="noopener"><span class="mini-name">足立区福祉サービス事業所職員家賃支援事業</span><span class="mini-org">足立区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183801" target="_blank" rel="noopener"><span class="mini-name">AI×データ知財取得支援事業の募集を開始</span><span class="mini-org">東京都、公益財団法人 東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183568" target="_blank" rel="noopener"><span class="mini-name">在宅介護事業所経営安定支援補助金</span><span class="mini-org">立川市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183292" target="_blank" rel="noopener"><span class="mini-name">従業員のES（社員満足度）向上による中小企業の若手人材確保サポートを実施</span><span class="mini-org">東京都、公益財団法人東京しごと財団</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183188" target="_blank" rel="noopener"><span class="mini-name">多摩市の補助金</span><span class="mini-org">多摩市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183003" target="_blank" rel="noopener"><span class="mini-name">若手・女性リーダー応援プログラム助成事業　商店街起業・承継支援事業</span><span class="mini-org">公益財団法人 東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183014" target="_blank" rel="noopener"><span class="mini-name">令和8年度デジタル化・データ利活用推進助成金</span><span class="mini-org">公益財団法人 板橋区産業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183020" target="_blank" rel="noopener"><span class="mini-name">令和8年度 中小企業魅力向上支援包括補助事業助成金</span><span class="mini-org">公益財団法人 板橋区産業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183023" target="_blank" rel="noopener"><span class="mini-name">産学公連携研究開発支援事業助成金</span><span class="mini-org">公益財団法人 板橋区産業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182869" target="_blank" rel="noopener"><span class="mini-name">事業承継を契機とした成長支援事業（一般コース）</span><span class="mini-org">公益財団法人 東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182185" target="_blank" rel="noopener"><span class="mini-name">テレワークに関する助成金事業</span><span class="mini-org">東京都</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181673" target="_blank" rel="noopener"><span class="mini-name">令和8年度新規事業　暑さに配慮した職場環境づくり奨励金</span><span class="mini-org">東京都</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180999" target="_blank" rel="noopener"><span class="mini-name">BCP実践促進助成金</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180960" target="_blank" rel="noopener"><span class="mini-name">令和8年度 新規事業 中小企業の積極果敢な取組を支援します</span><span class="mini-org">東京都、公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180640" target="_blank" rel="noopener"><span class="mini-name">BCP実践促進助成金募集</span><span class="mini-org">東京都、公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180643" target="_blank" rel="noopener"><span class="mini-name">サイバーセキュリティ対策促進助成金募集</span><span class="mini-org">東京都、公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180644" target="_blank" rel="noopener"><span class="mini-name">令和8年度「若手・女性リーダー応援プログラム助成事業」　「商店街起業・承継支援事業」募集</span><span class="mini-org">東京都、公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180682" target="_blank" rel="noopener"><span class="mini-name">府中市事業者支援制度パンフレット</span><span class="mini-org">府中市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180701" target="_blank" rel="noopener"><span class="mini-name">農業用機械購入補助金</span><span class="mini-org">檜原村</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180462" target="_blank" rel="noopener"><span class="mini-name">中小企業の就業規則整備を支援します！（墨田区就業規則整備補助金）</span><span class="mini-org">墨田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180408" target="_blank" rel="noopener"><span class="mini-name">外国商標出願費用助成事業（令和8年度）</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180410" target="_blank" rel="noopener"><span class="mini-name">外国意匠出願費用助成事業（令和8年度）</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180411" target="_blank" rel="noopener"><span class="mini-name">外国実用新案出願費用助成事業（令和8年度）</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180412" target="_blank" rel="noopener"><span class="mini-name">外国特許出願費用助成事業（令和8年度）</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180415" target="_blank" rel="noopener"><span class="mini-name">令和8年度　展示会出展助成事業</span><span class="mini-org">公益財団法人東京都中小企業振興公社</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179630" target="_blank" rel="noopener"><span class="mini-name">中小企業資金等資金融資あっせん制度</span><span class="mini-org">東久留米市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179577" target="_blank" rel="noopener"><span class="mini-name">（小規模事業者向け支援）小金井市小規模事業者持続化サポート補助金の申請を受付中です</span><span class="mini-org">小金井市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179393" target="_blank" rel="noopener"><span class="mini-name">令和8年度MICE主催者等向け各種支援事業</span><span class="mini-org">東京都、公益財団法人 東京観光財団</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179432" target="_blank" rel="noopener"><span class="mini-name">【プレスリリース】令和8年度から大田区ものづくり等人材確保のための奨学金返還支援事業の申請対象を拡充します！</span><span class="mini-org">大田区</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179258" target="_blank" rel="noopener"><span class="mini-name">令和8年度商店会活性出店支援金</span><span class="mini-org">武蔵野市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/177147" target="_blank" rel="noopener"><span class="mini-name">令和8年度（2026年度）八王子市農作物獣害防止対策費補助金交付事業</span><span class="mini-org">八王子市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/176662" target="_blank" rel="noopener"><span class="mini-name">令和8年度「創業助成事業」募集</span><span class="mini-org">東京都、公益財団法人東京都中小企業振興公社</span></a></div>
+</details>
+</section>
+<section class="panel" id="panel-osaka" role="tabpanel" hidden>
+  <h2 class="band band--urgent"><span class="band-name">今週中</span><span class="band-n">1</span></h2>
+<a class="row row--urgent" href="https://j-net21.smrj.go.jp/snavi2/articles/186461" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>2</b><i>日</i></span>
+    <span class="dl">7/15</span>
+  </div>
+  <div class="body">
+    <h3 class="name">岸和田市漁業用燃油価格高騰対策事業補助金</h3>
+    <p class="sum">燃油価格の高騰による漁業者の負担を軽減するため、燃油費の一部を補助する制度。</p>
+    <div class="meta"><span class="chip">漁業</span><span class="org">岸和田市</span></div>
+    <div class="notewrap"><span class="note">岸和田市。締切7/15</span></div>
+  </div>
+</a><h2 class="band band--soon"><span class="band-name">今月中</span><span class="band-n">3</span></h2>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/182490" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>8</b><i>日</i></span>
+    <span class="dl">7/21</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小事業者の脱炭素化に係る自主的取組支援補助金</h3>
+    <p class="sum">中小事業者が自主的に取り組む省エネ・脱炭素化の設備投資などを補助する制度。</p>
+    <div class="meta"><span class="chip">大阪府内の中小企業</span><span class="org">大阪府</span></div>
+    <div class="notewrap"><span class="note">締切7/21</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/185092" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">障がい児通所サービス事業者向け補助金（吹田市）</h3>
+    <p class="sum">障がい児通所サービスを提供する事業者への補助制度。申請前に事前協議が必要。</p>
+    <div class="meta"><span class="chip">福祉事業者（吹田市）</span><span class="org">吹田市</span></div>
+    <div class="notewrap"><span class="note">締切7/31。事前協議あり</span></div>
+  </div>
+</a>
+<a class="row row--soon" href="https://j-net21.smrj.go.jp/snavi2/articles/183543" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>18</b><i>日</i></span>
+    <span class="dl">7/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">高槻”魅力あるお店”応援プロジェクト（令和8年度）</h3>
+    <p class="sum">市内での新規出店にかかる店舗改装費を最大150万円まで補助する制度。</p>
+    <div class="meta"><span class="chip">飲食・小売（高槻市）</span><span class="org">高槻市</span></div>
+    <div class="notewrap"><span class="note">締切7/31。最大150万円</span></div>
+  </div>
+</a><h2 class="band band--mid"><span class="band-name">2か月以内</span><span class="band-n">3</span></h2>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/182454" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>46</b><i>日</i></span>
+    <span class="dl">8/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">高槻市公共交通事業者特別応援金の給付</h3>
+    <p class="sum">バス・タクシーなど公共交通事業者の経営を支援する応援金。</p>
+    <div class="meta"><span class="chip">バス・タクシー（高槻市）</span><span class="org">高槻市</span></div>
+    <div class="notewrap"><span class="note">締切8/28</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/184607" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">運送事業者物価高対策支援金</h3>
+    <p class="sum">運送事業者の物価高騰による負担を軽減する支援金。</p>
+    <div class="meta"><span class="chip">運送業（高槻市）</span><span class="org">高槻市</span></div>
+    <div class="notewrap"><span class="note">締切8/31</span></div>
+  </div>
+</a>
+<a class="row row--mid" href="https://j-net21.smrj.go.jp/snavi2/articles/176613" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>49</b><i>日</i></span>
+    <span class="dl">8/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小企業ブーストアップ補助金</h3>
+    <p class="sum">市内中小企業の新事業展開や設備投資を後押しする補助制度。</p>
+    <div class="meta"><span class="chip">中小企業（吹田市）</span><span class="org">吹田市</span></div>
+    <div class="notewrap"><span class="note">締切8/31</span></div>
+  </div>
+</a><h2 class="band band--later"><span class="band-name">それ以降</span><span class="band-n">18</span></h2>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/185214" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">中小事業者の対策計画書に基づくZEV導入促進補助金</h3>
+    
+    <div class="meta"><span class="org">大阪府</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179365" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度大阪“みなと”貨物集貨事業補助金の申請を受け付けます！</h3>
+    
+    <div class="meta"><span class="org">大阪港湾局</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179364" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>140</b><i>日</i></span>
+    <span class="dl">11/30</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度モーダルシフト推進事業補助金の申請を受け付けます！</h3>
+    
+    <div class="meta"><span class="org">大阪港湾局</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/179370" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>165</b><i>日</i></span>
+    <span class="dl">12/25</span>
+  </div>
+  <div class="body">
+    <h3 class="name">大阪港コンテナターミナル荷役機械脱炭素化促進事業補助金の申請を受け付けます</h3>
+    
+    <div class="meta"><span class="org">大阪市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/182122" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>168</b><i>日</i></span>
+    <span class="dl">12/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">富田林市施設園芸猛暑対策補助金</h3>
+    
+    <div class="meta"><span class="org">富田林市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186508" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度堺市中小企業DXリスキリング補助金</h3>
+    
+    <div class="meta"><span class="org">堺市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181256" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">岸和田市内での創業や創業者の販路開拓を支援します</h3>
+    
+    <div class="meta"><span class="org">岸和田市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181272" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">岸和田市内の事業所のデジタル化を支援します</h3>
+    
+    <div class="meta"><span class="org">岸和田市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181274" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">岸和田市内事業者の展示会への出展等、販路拡大を支援します</h3>
+    
+    <div class="meta"><span class="org">岸和田市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181281" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">市内事業者の産業人材の育成を支援します</h3>
+    
+    <div class="meta"><span class="org">岸和田市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/174882" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>200</b><i>日</i></span>
+    <span class="dl">1/29</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度AI促進補助金</h3>
+    
+    <div class="meta"><span class="org">豊中市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184146" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度岸和田市奨学金返還支援事業助成金（本人版）</h3>
+    
+    <div class="meta"><span class="org">岸和田市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/184145" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>228</b><i>日</i></span>
+    <span class="dl">2/26</span>
+  </div>
+  <div class="body">
+    <h3 class="name">（事業主のみなさまへ）令和8年度から新たに岸和田市奨学金返還支援事業助成金（企業版）を始めます</h3>
+    
+    <div class="meta"><span class="org">岸和田市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/186373" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>230</b><i>日</i></span>
+    <span class="dl">2/28</span>
+  </div>
+  <div class="body">
+    <h3 class="name">【申請受付中】令和8年度東大阪市省エネ設備更新事業補助金</h3>
+    
+    <div class="meta"><span class="org">東大阪市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/181439" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">福祉人材の確保のため「資格取得補助金」「就職支援補助金」を支給します</h3>
+    
+    <div class="meta"><span class="org">箕面市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180370" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度人材確保促進補助金</h3>
+    
+    <div class="meta"><span class="org">豊中市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/180369" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度展示会等出展支援補助金</h3>
+    
+    <div class="meta"><span class="org">豊中市</span></div>
+    
+  </div>
+</a>
+<a class="row row--later" href="https://j-net21.smrj.go.jp/snavi2/articles/174881" target="_blank" rel="noopener">
+  <div class="mark">
+    <span class="dot"></span>
+    <span class="days"><b>261</b><i>日</i></span>
+    <span class="dl">3/31</span>
+  </div>
+  <div class="body">
+    <h3 class="name">令和8年度AIセミナー受講料補助金</h3>
+    
+    <div class="meta"><span class="org">豊中市</span></div>
+    
+  </div>
+</a>
+  
+<details class="always">
+  <summary><span>通年・随時受付（締切の記載なし）</span><b>21</b></summary>
+  <div class="mini-list"><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/186584" target="_blank" rel="noopener"><span class="mini-name">障害者グループホーム整備費等補助金</span><span class="mini-org">箕面市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/185281" target="_blank" rel="noopener"><span class="mini-name">結核対策費補助金</span><span class="mini-org">東大阪市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184702" target="_blank" rel="noopener"><span class="mini-name">補助金交付までのつなぎ融資</span><span class="mini-org">公益社団法人 堺市産業振興センター</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184703" target="_blank" rel="noopener"><span class="mini-name">創業後の資金調達をしたい （中百舌鳥エリア限定）</span><span class="mini-org">公益社団法人 堺市産業振興センター</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184785" target="_blank" rel="noopener"><span class="mini-name">富田林市ツアー造成促進事業補助金</span><span class="mini-org">富田林市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184789" target="_blank" rel="noopener"><span class="mini-name">制度融資（信用保証付き）</span><span class="mini-org">大阪府</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/184649" target="_blank" rel="noopener"><span class="mini-name">茨木市中小企業等賃⾦引上げ奨励金</span><span class="mini-org">茨木市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183519" target="_blank" rel="noopener"><span class="mini-name">産業財産権活用事業助成金</span><span class="mini-org">公益財団法人 東大阪市産業創造勤労者支援機構</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183515" target="_blank" rel="noopener"><span class="mini-name">常設展示場出展料助成金</span><span class="mini-org">東大阪市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183512" target="_blank" rel="noopener"><span class="mini-name">創業促進インキュベートルーム賃料助成金</span><span class="mini-org">東大阪市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/183214" target="_blank" rel="noopener"><span class="mini-name">令和8年度中小企業の省エネ・省CO2加速化支援事業補助金</span><span class="mini-org">大阪市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182983" target="_blank" rel="noopener"><span class="mini-name">令和8年度 教育・保育施設等物価高対策支援事業</span><span class="mini-org">高槻市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182418" target="_blank" rel="noopener"><span class="mini-name">令和8年度 社会福祉施設等物価高対策支援事業</span><span class="mini-org">高槻市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/182145" target="_blank" rel="noopener"><span class="mini-name">堺市オープンファクトリー推進事業補助金</span><span class="mini-org">堺市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181731" target="_blank" rel="noopener"><span class="mini-name">中小企業デジタル化促進補助金</span><span class="mini-org">吹田市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181253" target="_blank" rel="noopener"><span class="mini-name">市内丸ごとラボ</span><span class="mini-org">岸和田市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/181288" target="_blank" rel="noopener"><span class="mini-name">岸和田市中小企業サポート融資</span><span class="mini-org">岸和田市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180358" target="_blank" rel="noopener"><span class="mini-name">（事業者向け）豊中市事業系ごみ処理機設置補助金</span><span class="mini-org">豊中市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180286" target="_blank" rel="noopener"><span class="mini-name">固定資産税等を最大1/2還元する独自の奨励金制度</span><span class="mini-org">柏原市</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/180037" target="_blank" rel="noopener"><span class="mini-name">大阪府副業・兼業人材活用促進補助金</span><span class="mini-org">大阪府</span></a><a class="mini" href="https://j-net21.smrj.go.jp/snavi2/articles/179684" target="_blank" rel="noopener"><span class="mini-name">創業をお考えのかた、創業間もないかたへ</span><span class="mini-org">箕面市</span></a></div>
+</details>
+</section>
+
+<a class="cta" href="#" id="consult">「うちは対象になる？」を相談する</a>
+
+<footer>
+  補助金名・実施機関・締切は公的機関の公表情報です。<br>
+  概要は当社が整理したものです。最新かつ正確な内容は<br>
+  各補助金の公式情報で必ずご確認ください。
+  <div class="src">出典：中小機構 J-Net21</div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.panel');
+
+  function show(key, push){
+    tabs.forEach(function(t){
+      t.setAttribute('aria-selected', String(t.dataset.region === key));
+    });
+    panels.forEach(function(p){
+      p.hidden = (p.id !== 'panel-' + key);
+    });
+    if (push) history.replaceState(null, '', '#' + key);
+    window.scrollTo(0, 0);
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.dataset.region, true); });
+  });
+
+  // LINEのリッチメニューから #tokyo などで直接着地できる
+  var valid = ['zenkoku','tokyo','osaka'];
+  var hash = (location.hash || '').replace('#','');
+  show(valid.indexOf(hash) >= 0 ? hash : 'zenkoku', false);
+
+  // 立ち上がりの順番付け
+  panels.forEach(function(p){
+    p.querySelectorAll('.row').forEach(function(r, i){
+      r.style.setProperty('--i', i);
+    });
+  });
+})();
+</script>
+</body>
+</html>
