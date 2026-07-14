@@ -1,1 +1,77 @@
+name: 補助金情報の自動更新
 
+# 実行タイミング
+on:
+  schedule:
+    # 毎日 日本時間 6:00 に実行（UTC 21:00 = JST 6:00）
+    - cron: '0 21 * * *'
+  # 手動実行もできるようにする（テスト用。Actionsタブから押せる）
+  workflow_dispatch:
+
+# GitHub Pages へ書き込む権限
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. リポジトリを取ってくる ──
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+
+      # ── 2. Python を用意 ──
+      - name: Python をセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 必要なライブラリをインストール
+        run: pip install requests beautifulsoup4
+
+      # ── 3. J-Net21 から取得（失敗したらここで止まる） ──
+      # スクレイパーには検証ガードレールが入っており、
+      # ・要求ページと返却ページの不一致
+      # ・総件数の変動
+      # ・最新掲載日が古すぎる
+      # のいずれかを検知すると exit 1 で異常終了する。
+      # その場合、以降のステップは実行されず、サイトは前日の内容のまま保たれる。
+      - name: J-Net21 から最新の補助金情報を取得
+        run: python jnet21_scraper.py
+
+      # ── 4. HTML を生成 ──
+      - name: サイトを生成
+        run: python gen_site.py
+
+      # ── 5. 変更があれば公開 ──
+      - name: 変更をコミットして公開
+        run: |
+          cp site/index.html index.html
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html data/jnet21_latest.json
+          if git diff --staged --quiet; then
+            echo "変更はありません。更新をスキップします。"
+          else
+            git commit -m "補助金情報を自動更新（$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M')）"
+            git push
+            echo "サイトを更新しました。"
+          fi
+
+      # ── 6. 取得結果のサマリを残す ──
+      - name: 取得結果を表示
+        if: always()
+        run: |
+          if [ -f data/jnet21_latest.json ]; then
+            python - <<'EOF'
+          import json
+          d = json.load(open('data/jnet21_latest.json', encoding='utf-8'))
+          print("=" * 46)
+          for v in d.values():
+              print(f"  {v['region']}: {v['fetched']}件 / 最新 {v['newest_pub_date']}")
+          print("=" * 46)
+          EOF
+          else
+            echo "データファイルがありません（取得に失敗した可能性）"
+          fi
