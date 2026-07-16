@@ -4,7 +4,7 @@
     "total_on_site": 203,
     "fetched": 202,
     "newest_pub_date": "2026-07-14",
-    "scraped_at": "2026-07-16T06:52:32.814062+09:00",
+    "scraped_at": "2026-07-17T06:58:51.225569+09:00",
     "items": [
       {
         "id": "187435",
@@ -1626,10 +1626,10 @@
   },
   "tokyo": {
     "region": "東京都",
-    "total_on_site": 157,
-    "fetched": 155,
+    "total_on_site": 156,
+    "fetched": 154,
     "newest_pub_date": "2026-07-15",
-    "scraped_at": "2026-07-16T06:52:53.533712+09:00",
+    "scraped_at": "2026-07-17T06:59:09.697617+09:00",
     "items": [
       {
         "id": "185344",
@@ -2096,20 +2096,20 @@
         "period": "2026年5月14日～"
       },
       {
-        "id": "183801",
-        "title": "【東京都】補助金・助成金：「AI×データ知財取得支援事業の募集を開始」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/183801",
-        "pub_date": "2026-05-28",
-        "org": "東京都、公益財団法人 東京都中小企業振興公社",
-        "period": ""
-      },
-      {
         "id": "183802",
         "title": "【東京都】補助金・助成金：「令和8年度新規事業 育児・介護との両立のためのテレワーク活用促進奨励金の申込受付を開始します」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/183802",
         "pub_date": "2026-05-28",
         "org": "東京都",
         "period": "2026年6月15日～2027年2月26日"
+      },
+      {
+        "id": "183801",
+        "title": "【東京都】補助金・助成金：「AI×データ知財取得支援事業の募集を開始」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/183801",
+        "pub_date": "2026-05-28",
+        "org": "東京都、公益財団法人 東京都中小企業振興公社",
+        "period": ""
       },
       {
         "id": "183568",
@@ -2445,14 +2445,6 @@
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/180682",
         "pub_date": "2026-04-17",
         "org": "府中市",
-        "period": ""
-      },
-      {
-        "id": "180701",
-        "title": "【檜原村】補助金・助成金：「農業用機械購入補助金について」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/180701",
-        "pub_date": "2026-04-17",
-        "org": "檜原村",
         "period": ""
       },
       {
@@ -2875,11 +2867,19 @@
   },
   "osaka": {
     "region": "大阪府",
-    "total_on_site": 46,
-    "fetched": 46,
-    "newest_pub_date": "2026-07-15",
-    "scraped_at": "2026-07-16T06:53:01.141741+09:00",
+    "total_on_site": 47,
+    "fetched": 47,
+    "newest_pub_date": "2026-07-16",
+    "scraped_at": "2026-07-17T06:59:16.428296+09:00",
     "items": [
+      {
+        "id": "187537",
+        "title": "【東大阪市】補助金・助成金：「立地促進補助金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187537",
+        "pub_date": "2026-07-16",
+        "org": "東大阪市",
+        "period": ""
+      },
       {
         "id": "187462",
         "title": "【大阪市】補助金・助成金：「新たな手法による太陽光発電の導入にかかる費用の一部を補助します」",
