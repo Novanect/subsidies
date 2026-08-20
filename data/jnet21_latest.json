@@ -1,10 +1,10 @@
 {
   "zenkoku": {
     "region": "全国",
-    "total_on_site": 241,
-    "fetched": 235,
+    "total_on_site": 240,
+    "fetched": 234,
     "newest_pub_date": "2026-08-17",
-    "scraped_at": "2026-08-20T06:18:55.097345+09:00",
+    "scraped_at": "2026-08-21T06:21:05.645486+09:00",
     "items": [
       {
         "id": "189799",
@@ -1495,14 +1495,6 @@
         "period": ""
       },
       {
-        "id": "180951",
-        "title": "補助金・助成金：「誰もが安心して暮らせるためのモデル的な取組を行う事業者を支援します！～「令和8年度 人生100年時代を支える住まい環境整備モデル事業」の募集を開始～」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/180951",
-        "pub_date": "2026-04-21",
-        "org": "国土交通省",
-        "period": ""
-      },
-      {
         "id": "180871",
         "title": "補助金・助成金：「令和8年度から令和12年度「二国間クレジット制度資金支援事業のうち設備補助事業」（JCM設備補助事業）の公募開始について」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/180871",
@@ -1884,7 +1876,7 @@
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/150869",
         "pub_date": "2025-03-14",
         "org": "中小企業庁",
-        "period": "先頭へ"
+        "period": ""
       }
     ]
   },
@@ -1893,7 +1885,7 @@
     "total_on_site": 156,
     "fetched": 156,
     "newest_pub_date": "2026-08-18",
-    "scraped_at": "2026-08-20T06:19:13.718252+09:00",
+    "scraped_at": "2026-08-21T06:21:24.491975+09:00",
     "items": [
       {
         "id": "189880",
@@ -3147,10 +3139,10 @@
   },
   "osaka": {
     "region": "大阪府",
-    "total_on_site": 48,
-    "fetched": 48,
+    "total_on_site": 47,
+    "fetched": 47,
     "newest_pub_date": "2026-08-12",
-    "scraped_at": "2026-08-20T06:19:20.434756+09:00",
+    "scraped_at": "2026-08-21T06:21:31.060455+09:00",
     "items": [
       {
         "id": "189375",
@@ -3374,14 +3366,6 @@
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/183512",
         "pub_date": "2026-05-26",
         "org": "東大阪市",
-        "period": ""
-      },
-      {
-        "id": "183214",
-        "title": "【大阪市】補助金・助成金：「令和8年度中小企業の省エネ・省CO2加速化支援事業補助金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/183214",
-        "pub_date": "2026-05-22",
-        "org": "大阪市",
         "period": ""
       },
       {
