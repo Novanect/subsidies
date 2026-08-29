@@ -1,11 +1,19 @@
 {
   "zenkoku": {
     "region": "全国",
-    "total_on_site": 241,
-    "fetched": 236,
-    "newest_pub_date": "2026-08-27",
-    "scraped_at": "2026-08-28T14:03:03.162493+09:00",
+    "total_on_site": 238,
+    "fetched": 234,
+    "newest_pub_date": "2026-08-28",
+    "scraped_at": "2026-08-29T11:59:15.107800+09:00",
     "items": [
+      {
+        "id": "190707",
+        "title": "補助金・助成金：「中小物流事業者の労働生産性向上事業費補助金（荷役等の効率化に向けた「標準仕様パレット」の利用促進支援事業）の4次公募について」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/190707",
+        "pub_date": "2026-08-28",
+        "org": "国土交通省",
+        "period": "2026年8月26日～2026年10月2日"
+      },
       {
         "id": "190683",
         "title": "補助金・助成金：「令和7年度補正予算「地域一体となった観光産業の効率化支援事業」三次公募開始のお知らせ」",
@@ -127,9 +135,9 @@
         "period": "2026年7月31日～2026年8月31日"
       },
       {
-        "id": "188502",
-        "title": "補助金・助成金 ：「建築物等のZEB化・省CO2化普及加速事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188502",
+        "id": "188505",
+        "title": "補助金・助成金 ：「Scope3排出量削減のための企業間連携による省CO2設備投資促進事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188505",
         "pub_date": "2026-07-31",
         "org": "環境省",
         "period": ""
@@ -151,20 +159,12 @@
         "period": ""
       },
       {
-        "id": "188505",
-        "title": "補助金・助成金 ：「Scope3排出量削減のための企業間連携による省CO2設備投資促進事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188505",
+        "id": "188502",
+        "title": "補助金・助成金 ：「建築物等のZEB化・省CO2化普及加速事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188502",
         "pub_date": "2026-07-31",
         "org": "環境省",
         "period": ""
-      },
-      {
-        "id": "188693",
-        "title": "補助金・助成金：「水産加工連携プラン支援事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188693",
-        "pub_date": "2026-07-31",
-        "org": "公益財団法人水産物安定供給推進機構",
-        "period": "～2026年9月4日"
       },
       {
         "id": "188619",
@@ -175,20 +175,20 @@
         "period": "2026年7月29日～2026年9月4日"
       },
       {
+        "id": "188693",
+        "title": "補助金・助成金：「水産加工連携プラン支援事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188693",
+        "pub_date": "2026-07-31",
+        "org": "公益財団法人水産物安定供給推進機構",
+        "period": "～2026年9月4日"
+      },
+      {
         "id": "188597",
         "title": "補助金・助成金：「業務改善助成金」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/188597",
         "pub_date": "2026-07-30",
         "org": "厚生労働省",
         "period": "2026年9月1日～"
-      },
-      {
-        "id": "188499",
-        "title": "補助金・助成金 ：「脱炭素技術等による工場・事業場の省CO2化加速事業（SHIFT 事業）」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188499",
-        "pub_date": "2026-07-29",
-        "org": "環境省",
-        "period": ""
       },
       {
         "id": "188394",
@@ -199,17 +199,25 @@
         "period": "～2026年9月1日"
       },
       {
-        "id": "188498",
-        "title": "補助金・助成金：「バリューチェーン脱炭素促進利子補給事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188498",
+        "id": "188500",
+        "title": "補助金・助成金 ：「ストレージパリティの達成に向けた太陽光発電設備等の価格低減促進事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188500",
         "pub_date": "2026-07-29",
         "org": "環境省",
         "period": ""
       },
       {
-        "id": "188500",
-        "title": "補助金・助成金 ：「ストレージパリティの達成に向けた太陽光発電設備等の価格低減促進事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188500",
+        "id": "188499",
+        "title": "補助金・助成金 ：「脱炭素技術等による工場・事業場の省CO2化加速事業（SHIFT 事業）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188499",
+        "pub_date": "2026-07-29",
+        "org": "環境省",
+        "period": ""
+      },
+      {
+        "id": "188498",
+        "title": "補助金・助成金：「バリューチェーン脱炭素促進利子補給事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188498",
         "pub_date": "2026-07-29",
         "org": "環境省",
         "period": ""
@@ -223,27 +231,19 @@
         "period": ""
       },
       {
-        "id": "187984",
-        "title": "支援情報：「経営承継準備関連保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187984",
+        "id": "187986",
+        "title": "支援情報：「特定経営承継準備関連保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187986",
         "pub_date": "2026-07-23",
         "org": "信用保証協会",
         "period": ""
       },
       {
-        "id": "187985",
-        "title": "支援情報：「特定経営承継関連保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187985",
+        "id": "187987",
+        "title": "支援情報：「自主廃業支援保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187987",
         "pub_date": "2026-07-23",
         "org": "信用保証協会",
-        "period": ""
-      },
-      {
-        "id": "187992",
-        "title": "支援情報：「事業承継の円滑化のための支援策」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187992",
-        "pub_date": "2026-07-23",
-        "org": "独立行政法人中小企業基盤整備機構・他",
         "period": ""
       },
       {
@@ -303,17 +303,17 @@
         "period": ""
       },
       {
-        "id": "187986",
-        "title": "支援情報：「特定経営承継準備関連保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187986",
+        "id": "187984",
+        "title": "支援情報：「経営承継準備関連保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187984",
         "pub_date": "2026-07-23",
         "org": "信用保証協会",
         "period": ""
       },
       {
-        "id": "187987",
-        "title": "支援情報：「自主廃業支援保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187987",
+        "id": "187985",
+        "title": "支援情報：「特定経営承継関連保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187985",
         "pub_date": "2026-07-23",
         "org": "信用保証協会",
         "period": ""
@@ -335,11 +335,27 @@
         "period": ""
       },
       {
+        "id": "187992",
+        "title": "支援情報：「事業承継の円滑化のための支援策」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187992",
+        "pub_date": "2026-07-23",
+        "org": "独立行政法人中小企業基盤整備機構・他",
+        "period": ""
+      },
+      {
         "id": "188002",
         "title": "支援情報 ：「経営承継円滑化法による総合的支援」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/188002",
         "pub_date": "2026-07-23",
         "org": "中小企業庁・他",
+        "period": ""
+      },
+      {
+        "id": "187994",
+        "title": "補助金・助成金 ：「事業承継・M＆A補助金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187994",
+        "pub_date": "2026-07-23",
+        "org": "中小企業庁・独立行政法人中小企業基盤整備機構",
         "period": ""
       },
       {
@@ -356,6 +372,14 @@
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/188048",
         "pub_date": "2026-07-23",
         "org": "株式会社日本政策金融公庫・他",
+        "period": ""
+      },
+      {
+        "id": "188044",
+        "title": "融資・貸付 ：「農林水産関連企業等に対する金融措置による支援」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188044",
+        "pub_date": "2026-07-23",
+        "org": "農林水産省",
         "period": ""
       },
       {
@@ -383,27 +407,11 @@
         "period": ""
       },
       {
-        "id": "188020",
-        "title": "支援情報 ：「民間中心市街地商業活性化事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188020",
+        "id": "188018",
+        "title": "支援情報：「特定民間中心市街地経済活力向上事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188018",
         "pub_date": "2026-07-23",
         "org": "経済産業省",
-        "period": ""
-      },
-      {
-        "id": "188006",
-        "title": "支援情報 ：「物資の流通の効率化に関する法律に基づく支援」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188006",
-        "pub_date": "2026-07-23",
-        "org": "独立行政法人中小企業基盤整備機構・他",
-        "period": ""
-      },
-      {
-        "id": "187994",
-        "title": "補助金・助成金 ：「事業承継・M＆A補助金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187994",
-        "pub_date": "2026-07-23",
-        "org": "中小企業庁・独立行政法人中小企業基盤整備機構",
         "period": ""
       },
       {
@@ -415,22 +423,6 @@
         "period": ""
       },
       {
-        "id": "188005",
-        "title": "融資・貸付：「企業活力強化資金/観光産業等生産性向上資金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188005",
-        "pub_date": "2026-07-23",
-        "org": "株式会社日本政策金融公庫・沖縄振興開発金融公庫",
-        "period": ""
-      },
-      {
-        "id": "188018",
-        "title": "支援情報：「特定民間中心市街地経済活力向上事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188018",
-        "pub_date": "2026-07-23",
-        "org": "経済産業省",
-        "period": ""
-      },
-      {
         "id": "188004",
         "title": "支援情報：「地域商店街活性化法に基づく支援」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/188004",
@@ -439,9 +431,49 @@
         "period": ""
       },
       {
+        "id": "188006",
+        "title": "支援情報 ：「物資の流通の効率化に関する法律に基づく支援」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188006",
+        "pub_date": "2026-07-23",
+        "org": "独立行政法人中小企業基盤整備機構・他",
+        "period": ""
+      },
+      {
+        "id": "188005",
+        "title": "融資・貸付：「企業活力強化資金/観光産業等生産性向上資金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188005",
+        "pub_date": "2026-07-23",
+        "org": "株式会社日本政策金融公庫・沖縄振興開発金融公庫",
+        "period": ""
+      },
+      {
+        "id": "188020",
+        "title": "支援情報 ：「民間中心市街地商業活性化事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188020",
+        "pub_date": "2026-07-23",
+        "org": "経済産業省",
+        "period": ""
+      },
+      {
+        "id": "187922",
+        "title": "支援情報 ：「経営改善サポート保証（経営改善・再生支援強化型）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187922",
+        "pub_date": "2026-07-22",
+        "org": "信用保証協会",
+        "period": ""
+      },
+      {
         "id": "187920",
         "title": "支援情報：「事業再生計画実施関連保証制度（経営改善サポート保証）」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/187920",
+        "pub_date": "2026-07-22",
+        "org": "信用保証協会",
+        "period": ""
+      },
+      {
+        "id": "187923",
+        "title": "支援情報：「信用保証付債権DDSについて」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187923",
         "pub_date": "2026-07-22",
         "org": "信用保証協会",
         "period": ""
@@ -455,36 +487,12 @@
         "period": ""
       },
       {
-        "id": "187922",
-        "title": "支援情報 ：「経営改善サポート保証（経営改善・再生支援強化型）」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187922",
+        "id": "187918",
+        "title": "支援情報：「コロナ借換保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187918",
         "pub_date": "2026-07-22",
         "org": "信用保証協会",
         "period": ""
-      },
-      {
-        "id": "187924",
-        "title": "支援情報：「協調支援型特別保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187924",
-        "pub_date": "2026-07-22",
-        "org": "信用保証協会",
-        "period": ""
-      },
-      {
-        "id": "187926",
-        "title": "支援情報：「モニタリング強化型特別保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187926",
-        "pub_date": "2026-07-22",
-        "org": "信用保証協会",
-        "period": ""
-      },
-      {
-        "id": "187431",
-        "title": "補助金・助成金：「令和7年度補正予算　地域資源の徹底活用に向けた資源循環加速化事業の二次公募（間接補助事業）について」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187431",
-        "pub_date": "2026-07-14",
-        "org": "環境省",
-        "period": "2026年7月13日～2026年8月28日"
       },
       {
         "id": "187191",
@@ -511,49 +519,17 @@
         "period": ""
       },
       {
-        "id": "187013",
-        "title": "支援情報：「セーフティネット保証制度」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187013",
+        "id": "187089",
+        "title": "補助金・助成金：「小規模事業者持続化補助金（共同・協業型）（第3回）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187089",
         "pub_date": "2026-07-09",
-        "org": "信用保証協会",
-        "period": ""
+        "org": "独立行政法人中小企業基盤整備機構",
+        "period": "～2026年9月30日"
       },
       {
-        "id": "187010",
-        "title": "融資・貸付：「危機対応後経営安定貸付【日本公庫（中小企業事業）】セーフティネット貸付（危機対応後経営安定資金）【日本公庫（国民生活事業）】」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187010",
-        "pub_date": "2026-07-09",
-        "org": "株式会社日本政策金融公庫・沖縄振興開発金融公庫",
-        "period": ""
-      },
-      {
-        "id": "187011",
-        "title": "融資・貸付 ：「中小企業経営力強化資金融資事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187011",
-        "pub_date": "2026-07-09",
-        "org": "株式会社日本政策金融公庫・沖縄振興開発金融公庫",
-        "period": ""
-      },
-      {
-        "id": "187012",
-        "title": "支援情報：「信用保証制度」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187012",
-        "pub_date": "2026-07-09",
-        "org": "信用保証協会",
-        "period": ""
-      },
-      {
-        "id": "187015",
-        "title": "支援情報：「災害関係保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187015",
-        "pub_date": "2026-07-09",
-        "org": "信用保証協会",
-        "period": ""
-      },
-      {
-        "id": "187016",
-        "title": "支援情報：「信用保証協会による借換保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187016",
+        "id": "187019",
+        "title": "支援情報：「保証料上乗せにより経営者保証の提供を不要とする信用保証制度」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187019",
         "pub_date": "2026-07-09",
         "org": "信用保証協会",
         "period": ""
@@ -567,22 +543,6 @@
         "period": ""
       },
       {
-        "id": "187019",
-        "title": "支援情報：「保証料上乗せにより経営者保証の提供を不要とする信用保証制度」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187019",
-        "pub_date": "2026-07-09",
-        "org": "信用保証協会",
-        "period": ""
-      },
-      {
-        "id": "187089",
-        "title": "補助金・助成金：「小規模事業者持続化補助金（共同・協業型）（第3回）」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187089",
-        "pub_date": "2026-07-09",
-        "org": "独立行政法人中小企業基盤整備機構",
-        "period": "～2026年9月30日"
-      },
-      {
         "id": "187017",
         "title": "支援情報：「創業関連保証制度」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/187017",
@@ -591,11 +551,59 @@
         "period": ""
       },
       {
-        "id": "186932",
-        "title": "融資・貸付 ：「令和6年能登半島地震特別貸付」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186932",
-        "pub_date": "2026-07-08",
+        "id": "187016",
+        "title": "支援情報：「信用保証協会による借換保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187016",
+        "pub_date": "2026-07-09",
+        "org": "信用保証協会",
+        "period": ""
+      },
+      {
+        "id": "187015",
+        "title": "支援情報：「災害関係保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187015",
+        "pub_date": "2026-07-09",
+        "org": "信用保証協会",
+        "period": ""
+      },
+      {
+        "id": "187013",
+        "title": "支援情報：「セーフティネット保証制度」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187013",
+        "pub_date": "2026-07-09",
+        "org": "信用保証協会",
+        "period": ""
+      },
+      {
+        "id": "187012",
+        "title": "支援情報：「信用保証制度」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187012",
+        "pub_date": "2026-07-09",
+        "org": "信用保証協会",
+        "period": ""
+      },
+      {
+        "id": "187011",
+        "title": "融資・貸付 ：「中小企業経営力強化資金融資事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187011",
+        "pub_date": "2026-07-09",
         "org": "株式会社日本政策金融公庫・沖縄振興開発金融公庫",
+        "period": ""
+      },
+      {
+        "id": "187010",
+        "title": "融資・貸付：「危機対応後経営安定貸付【日本公庫（中小企業事業）】セーフティネット貸付（危機対応後経営安定資金）【日本公庫（国民生活事業）】」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187010",
+        "pub_date": "2026-07-09",
+        "org": "株式会社日本政策金融公庫・沖縄振興開発金融公庫",
+        "period": ""
+      },
+      {
+        "id": "186933",
+        "title": "融資・貸付：「高度化事業（災害対策）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186933",
+        "pub_date": "2026-07-08",
+        "org": "独立行政法人 中小企業基盤整備機構",
         "period": ""
       },
       {
@@ -607,11 +615,11 @@
         "period": "2026年7月7日～2026年10月30日"
       },
       {
-        "id": "186933",
-        "title": "融資・貸付：「高度化事業（災害対策）」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186933",
+        "id": "186932",
+        "title": "融資・貸付 ：「令和6年能登半島地震特別貸付」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186932",
         "pub_date": "2026-07-08",
-        "org": "独立行政法人 中小企業基盤整備機構",
+        "org": "株式会社日本政策金融公庫・沖縄振興開発金融公庫",
         "period": ""
       },
       {
@@ -623,12 +631,12 @@
         "period": ""
       },
       {
-        "id": "186881",
-        "title": "補助金・助成金：「令和7年度予算「水インフラにおける脱炭素化推進事業」の四次公募開始について」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186881",
+        "id": "183049",
+        "title": "補助金・助成金 ：「INPIT外国出願補助金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/183049",
         "pub_date": "2026-07-07",
-        "org": "環境省",
-        "period": "2026年6月18日～2026年9月18日"
+        "org": "独立行政法人工業所有権情報・研修館（INPIT）",
+        "period": "2026年9月7日～2026年9月28日"
       },
       {
         "id": "186820",
@@ -647,12 +655,12 @@
         "period": "2026年7月2日～2026年9月30日"
       },
       {
-        "id": "183049",
-        "title": "補助金・助成金 ：「INPIT外国出願補助金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/183049",
+        "id": "186881",
+        "title": "補助金・助成金：「令和7年度予算「水インフラにおける脱炭素化推進事業」の四次公募開始について」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186881",
         "pub_date": "2026-07-07",
-        "org": "独立行政法人工業所有権情報・研修館（INPIT）",
-        "period": "2026年9月7日～2026年9月28日"
+        "org": "環境省",
+        "period": "2026年6月18日～2026年9月18日"
       },
       {
         "id": "186502",
@@ -685,22 +693,6 @@
         "pub_date": "2026-06-30",
         "org": "経済産業省・国土交通省",
         "period": "2026年6月29日～2026年10月30日"
-      },
-      {
-        "id": "186026",
-        "title": "補助金・助成金：「居宅介護事業所・重度訪問介護事業所の人材確保を支援～「介護者なき後」の不安解消を目指し、補助事業の公募開始～」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186026",
-        "pub_date": "2026-06-29",
-        "org": "国土交通省",
-        "period": "2026年6月22日～2026年8月28日"
-      },
-      {
-        "id": "186027",
-        "title": "補助金・助成金：「グループホーム・障害者支援施設の人材確保を支援～「介護者なき後」の不安解消を目指し、補助事業の公募開始～」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186027",
-        "pub_date": "2026-06-29",
-        "org": "国土交通省",
-        "period": "2026年6月22日～2026年8月28日"
       },
       {
         "id": "186125",
@@ -813,14 +805,6 @@
         "pub_date": "2026-06-19",
         "org": "農林水産省",
         "period": ""
-      },
-      {
-        "id": "185154",
-        "title": "補助金・助成金：「自動車における再生材市場構築のための産官学連携推進事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/185154",
-        "pub_date": "2026-06-16",
-        "org": "環境省（執行団体：公益財団法人廃棄物・3R研究財団）",
-        "period": "2026年6月15日～2026年8月28日"
       },
       {
         "id": "185047",
@@ -1892,17 +1876,25 @@
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/150869",
         "pub_date": "2025-03-14",
         "org": "中小企業庁",
-        "period": "先頭へ"
+        "period": ""
       }
     ]
   },
   "tokyo": {
     "region": "東京都",
-    "total_on_site": 158,
-    "fetched": 158,
-    "newest_pub_date": "2026-08-27",
-    "scraped_at": "2026-08-28T14:03:24.228691+09:00",
+    "total_on_site": 155,
+    "fetched": 154,
+    "newest_pub_date": "2026-08-28",
+    "scraped_at": "2026-08-29T11:59:33.566306+09:00",
     "items": [
+      {
+        "id": "190779",
+        "title": "【八王子市】補助金・助成金：「八王子市介護サービス事業所等物価高騰対策支援金（令和8年1月から6月分まで）交付事業について」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/190779",
+        "pub_date": "2026-08-28",
+        "org": "八王子市",
+        "period": "2026年9月1日～2026年10月30日"
+      },
       {
         "id": "190688",
         "title": "補助金・助成金：「令和8年度女性の活躍推進に向けた職場環境改善プロジェクト〜事業概要」",
@@ -2008,14 +2000,6 @@
         "period": "2026年8月3日～2027年1月29日"
       },
       {
-        "id": "188391",
-        "title": "【東京都】補助金・助成金：「ライトアップやイルミネーションを行う取組を支援します　助成金の第2回募集開始」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188391",
-        "pub_date": "2026-07-29",
-        "org": "東京都、公益財団法人東京観光財団",
-        "period": "2026年7月27日～2026年8月28日"
-      },
-      {
         "id": "188376",
         "title": "【八王子市】補助金・助成金：【8月3日から申請受付】八王子市事業資金融資支援金のご案内",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/188376",
@@ -2064,14 +2048,6 @@
         "period": "2026年7月21日～2026年9月25日"
       },
       {
-        "id": "187409",
-        "title": "【東久留米市】補助金・助成金：「物価高騰対応農業経営支援事業補助金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187409",
-        "pub_date": "2026-07-14",
-        "org": "東久留米市",
-        "period": "～2026年8月28日"
-      },
-      {
         "id": "187067",
         "title": "【府中市】補助金・助成金：【自治会・商店会】令和9年度防犯カメラの設置等に対する補助金",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/187067",
@@ -2096,14 +2072,6 @@
         "period": "2026年9月14日～2026年10月30日"
       },
       {
-        "id": "186907",
-        "title": "補助金・助成金：「経営力強化に向けた創意工夫チャレンジ促進事業 （賃上げ重点コース）」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186907",
-        "pub_date": "2026-07-08",
-        "org": "公益財団法人東京都中小企業振興公社",
-        "period": ""
-      },
-      {
         "id": "186888",
         "title": "【板橋区】融資・貸付：「中小企業のための融資制度　ご案内」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/186888",
@@ -2112,17 +2080,17 @@
         "period": ""
       },
       {
-        "id": "186908",
-        "title": "補助金・助成金：「経営力強化に向けた創意工夫チャレンジ促進事業 （業務改善コース）」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186908",
+        "id": "186907",
+        "title": "補助金・助成金：「経営力強化に向けた創意工夫チャレンジ促進事業 （賃上げ重点コース）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186907",
         "pub_date": "2026-07-08",
         "org": "公益財団法人東京都中小企業振興公社",
         "period": ""
       },
       {
-        "id": "186909",
-        "title": "支援情報：「環境に配慮したマルチエネルギーステーション化に向けた経営力強化・設備導入等支援事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186909",
+        "id": "186908",
+        "title": "補助金・助成金：「経営力強化に向けた創意工夫チャレンジ促進事業 （業務改善コース）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186908",
         "pub_date": "2026-07-08",
         "org": "公益財団法人東京都中小企業振興公社",
         "period": ""
@@ -2136,20 +2104,20 @@
         "period": "～2026年11月10日"
       },
       {
+        "id": "186909",
+        "title": "支援情報：「環境に配慮したマルチエネルギーステーション化に向けた経営力強化・設備導入等支援事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186909",
+        "pub_date": "2026-07-08",
+        "org": "公益財団法人東京都中小企業振興公社",
+        "period": ""
+      },
+      {
         "id": "186884",
         "title": "【板橋区】補助金・助成金：「小規模事業者経営改善資金（マル経融資）利子補給制度」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/186884",
         "pub_date": "2026-07-07",
         "org": "板橋区",
         "period": ""
-      },
-      {
-        "id": "186645",
-        "title": "【立川市】補助金・助成金：「デジタル技術活用支援事業補助金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186645",
-        "pub_date": "2026-07-03",
-        "org": "立川市",
-        "period": "2026年7月1日～2026年11月30日"
       },
       {
         "id": "186556",
@@ -2184,9 +2152,9 @@
         "period": "2026年7月1日～2026年12月15日"
       },
       {
-        "id": "186233",
-        "title": "【千代田区】融資・貸付：「千代田区商工融資あっせん制度（起業資金）」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186233",
+        "id": "186225",
+        "title": "【千代田区】融資・貸付：「千代田区商工融資あっせん制度」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186225",
         "pub_date": "2026-06-30",
         "org": "千代田区",
         "period": ""
@@ -2232,14 +2200,6 @@
         "period": ""
       },
       {
-        "id": "186225",
-        "title": "【千代田区】融資・貸付：「千代田区商工融資あっせん制度」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186225",
-        "pub_date": "2026-06-30",
-        "org": "千代田区",
-        "period": ""
-      },
-      {
         "id": "186224",
         "title": "【千代田区】補助金・助成金：「区内で障害者を雇用する人等への援助金」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/186224",
@@ -2248,17 +2208,9 @@
         "period": ""
       },
       {
-        "id": "186239",
-        "title": "【千代田区】補助金・助成金 ：「中小企業と商店街等の支援」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186239",
-        "pub_date": "2026-06-30",
-        "org": "千代田区",
-        "period": ""
-      },
-      {
-        "id": "186236",
-        "title": "【千代田区】補助金・助成金：「公衆喫煙所設置助成事業の概要」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186236",
+        "id": "186233",
+        "title": "【千代田区】融資・貸付：「千代田区商工融資あっせん制度（起業資金）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186233",
         "pub_date": "2026-06-30",
         "org": "千代田区",
         "period": ""
@@ -2270,6 +2222,22 @@
         "pub_date": "2026-06-30",
         "org": "千代田区",
         "period": "2026年4月1日～2026年12月28日"
+      },
+      {
+        "id": "186236",
+        "title": "【千代田区】補助金・助成金：「公衆喫煙所設置助成事業の概要」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186236",
+        "pub_date": "2026-06-30",
+        "org": "千代田区",
+        "period": ""
+      },
+      {
+        "id": "186239",
+        "title": "【千代田区】補助金・助成金 ：「中小企業と商店街等の支援」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186239",
+        "pub_date": "2026-06-30",
+        "org": "千代田区",
+        "period": ""
       },
       {
         "id": "186169",
@@ -2288,22 +2256,6 @@
         "period": ""
       },
       {
-        "id": "185966",
-        "title": "【港区】補助金・助成金：「港区チャレンジ商店街店舗応援事業補助金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/185966",
-        "pub_date": "2026-06-26",
-        "org": "港区",
-        "period": "～2027年1月29日"
-      },
-      {
-        "id": "186012",
-        "title": "【東京都】補助金・助成金：「令和8年度　東京都中小企業制度融資　中東情勢の影響を受ける中小企業の資金繰り支援を拡充」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186012",
-        "pub_date": "2026-06-26",
-        "org": "東京都",
-        "period": "2026年6月25日～"
-      },
-      {
         "id": "186028",
         "title": "補助金・助成金：「女性活躍のための施設整備助成金」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/186028",
@@ -2320,6 +2272,22 @@
         "period": ""
       },
       {
+        "id": "186012",
+        "title": "【東京都】補助金・助成金：「令和8年度　東京都中小企業制度融資　中東情勢の影響を受ける中小企業の資金繰り支援を拡充」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/186012",
+        "pub_date": "2026-06-26",
+        "org": "東京都",
+        "period": "2026年6月25日～"
+      },
+      {
+        "id": "185966",
+        "title": "【港区】補助金・助成金：「港区チャレンジ商店街店舗応援事業補助金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/185966",
+        "pub_date": "2026-06-26",
+        "org": "港区",
+        "period": "～2027年1月29日"
+      },
+      {
         "id": "185360",
         "title": "【墨田区】融資・貸付：「中東情勢対策緊急資金」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/185360",
@@ -2328,20 +2296,20 @@
         "period": "2026年6月18日～2026年10月30日"
       },
       {
-        "id": "185128",
-        "title": "【葛飾区】補助金・助成金：「葛飾区介護サービス事業所等ICT化促進費助成金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/185128",
-        "pub_date": "2026-06-16",
-        "org": "葛飾区",
-        "period": ""
-      },
-      {
         "id": "185223",
         "title": "【東京都】補助金・助成金：「商店街防災力向上緊急支援事業の募集開始　商店街の防災力向上を支援します」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/185223",
         "pub_date": "2026-06-16",
         "org": "東京都",
         "period": "2026年6月15日～2026年11月30日"
+      },
+      {
+        "id": "185128",
+        "title": "【葛飾区】補助金・助成金：「葛飾区介護サービス事業所等ICT化促進費助成金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/185128",
+        "pub_date": "2026-06-16",
+        "org": "葛飾区",
+        "period": ""
       },
       {
         "id": "185015",
@@ -2368,12 +2336,12 @@
         "period": "2026年6月15日～2026年8月31日"
       },
       {
-        "id": "184581",
-        "title": "【東京都】補助金・助成金：「新規事業　カーボンクレジット創出に必要な登録・認証に係る費用を支援 「カーボンクレジット創出支援事業」を新たに開始します！」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/184581",
+        "id": "184584",
+        "title": "【東京都】補助金・助成金：「事業承継支援助成金募集のお知らせ」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/184584",
         "pub_date": "2026-06-08",
         "org": "東京都",
-        "period": "～2027年3月31日"
+        "period": ""
       },
       {
         "id": "184524",
@@ -2384,12 +2352,12 @@
         "period": "2026年6月1日～2026年9月30日"
       },
       {
-        "id": "184584",
-        "title": "【東京都】補助金・助成金：「事業承継支援助成金募集のお知らせ」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/184584",
+        "id": "184581",
+        "title": "【東京都】補助金・助成金：「新規事業　カーボンクレジット創出に必要な登録・認証に係る費用を支援 「カーボンクレジット創出支援事業」を新たに開始します！」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/184581",
         "pub_date": "2026-06-08",
         "org": "東京都",
-        "period": ""
+        "period": "～2027年3月31日"
       },
       {
         "id": "184458",
@@ -2462,14 +2430,6 @@
         "pub_date": "2026-05-27",
         "org": "立川市",
         "period": ""
-      },
-      {
-        "id": "183661",
-        "title": "【東京都】補助金・助成金：「多摩・島しょ地域資源承継支援助成金」の申請受付を開始",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/183661",
-        "pub_date": "2026-05-27",
-        "org": "東京都",
-        "period": "2026年5月13日～2026年8月28日"
       },
       {
         "id": "183528",
@@ -2662,14 +2622,6 @@
         "pub_date": "2026-04-22",
         "org": "公益財団法人東京都中小企業振興公社",
         "period": ""
-      },
-      {
-        "id": "180927",
-        "title": "【立川市】補助金・助成金：「ものづくり企業地域共生推進助成事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/180927",
-        "pub_date": "2026-04-21",
-        "org": "立川市",
-        "period": "～2026年8月28日"
       },
       {
         "id": "180960",
@@ -3171,11 +3123,19 @@
   },
   "osaka": {
     "region": "大阪府",
-    "total_on_site": 46,
-    "fetched": 46,
-    "newest_pub_date": "2026-08-12",
-    "scraped_at": "2026-08-28T14:03:31.965344+09:00",
+    "total_on_site": 45,
+    "fetched": 45,
+    "newest_pub_date": "2026-08-28",
+    "scraped_at": "2026-08-29T11:59:40.180159+09:00",
     "items": [
+      {
+        "id": "190785",
+        "title": "【岸和田市】補助金・助成金：「令和8年度大阪府地域医療介護総合確保基金事業（大阪府介護施設等の整備に関する事業補助金）の募集について」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/190785",
+        "pub_date": "2026-08-28",
+        "org": "岸和田市・大阪府",
+        "period": "～2026年9月24日"
+      },
       {
         "id": "189375",
         "title": "【大阪府】補助金・助成金：「中小事業者の脱炭素化に係る自主的取組支援補助金」",
@@ -3215,14 +3175,6 @@
         "pub_date": "2026-07-28",
         "org": "大阪府",
         "period": "2026年7月6日～2026年9月30日"
-      },
-      {
-        "id": "188301",
-        "title": "【泉佐野市】補助金・助成金：「令和8年度大阪府介護施設等の整備に関する事業補助金について」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188301",
-        "pub_date": "2026-07-28",
-        "org": "泉佐野市、大阪府",
-        "period": "～2026年8月28日"
       },
       {
         "id": "188068",
@@ -3393,14 +3345,6 @@
         "period": ""
       },
       {
-        "id": "182454",
-        "title": "【高槻市】補助金・助成金：「高槻市公共交通事業者特別応援金の給付」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/182454",
-        "pub_date": "2026-05-13",
-        "org": "高槻市",
-        "period": "2026年6月1日～2026年8月28日"
-      },
-      {
         "id": "182122",
         "title": "【富田林市】補助金・助成金：「富田林市施設園芸猛暑対策補助金について」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/182122",
@@ -3425,9 +3369,9 @@
         "period": "2026年4月1日～2027年3月31日"
       },
       {
-        "id": "181274",
-        "title": "【岸和田市】補助金・助成金：「岸和田市内事業者の展示会への出展等、販路拡大を支援します」」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/181274",
+        "id": "181272",
+        "title": "【岸和田市】補助金・助成金：「岸和田市内の事業所のデジタル化を支援します」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/181272",
         "pub_date": "2026-04-24",
         "org": "岸和田市",
         "period": "～2027年1月29日"
@@ -3441,9 +3385,9 @@
         "period": "～2027年1月29日"
       },
       {
-        "id": "181272",
-        "title": "【岸和田市】補助金・助成金：「岸和田市内の事業所のデジタル化を支援します」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/181272",
+        "id": "181274",
+        "title": "【岸和田市】補助金・助成金：「岸和田市内事業者の展示会への出展等、販路拡大を支援します」」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/181274",
         "pub_date": "2026-04-24",
         "org": "岸和田市",
         "period": "～2027年1月29日"
