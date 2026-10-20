@@ -1,11 +1,19 @@
 {
   "zenkoku": {
     "region": "全国",
-    "total_on_site": 233,
-    "fetched": 226,
-    "newest_pub_date": "2026-10-13",
-    "scraped_at": "2026-10-19T07:42:09.130023+09:00",
+    "total_on_site": 234,
+    "fetched": 228,
+    "newest_pub_date": "2026-10-19",
+    "scraped_at": "2026-10-20T09:03:32.430899+09:00",
     "items": [
+      {
+        "id": "194199",
+        "title": "補助金・助成金：「令和8年熊本地震に伴う産業雇用安定助成金の特例を実施します」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/194199",
+        "pub_date": "2026-10-19",
+        "org": "厚生労働省",
+        "period": ""
+      },
       {
         "id": "193884",
         "title": "補助金・助成金：「持続的生産強化緊急対策（令和8年熊本地震対応産地緊急支援事業）に係る公募（第2回）について」",
@@ -239,6 +247,14 @@
         "period": ""
       },
       {
+        "id": "188505",
+        "title": "補助金・助成金 ：「Scope3排出量削減のための企業間連携による省CO2設備投資促進事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188505",
+        "pub_date": "2026-07-31",
+        "org": "環境省",
+        "period": ""
+      },
+      {
         "id": "188502",
         "title": "補助金・助成金 ：「建築物等のZEB化・省CO2化普及加速事業」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/188502",
@@ -295,9 +311,9 @@
         "period": ""
       },
       {
-        "id": "187985",
-        "title": "支援情報：「特定経営承継関連保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187985",
+        "id": "187986",
+        "title": "支援情報：「特定経営承継準備関連保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187986",
         "pub_date": "2026-07-23",
         "org": "信用保証協会",
         "period": ""
@@ -383,9 +399,9 @@
         "period": ""
       },
       {
-        "id": "187986",
-        "title": "支援情報：「特定経営承継準備関連保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187986",
+        "id": "187985",
+        "title": "支援情報：「特定経営承継関連保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187985",
         "pub_date": "2026-07-23",
         "org": "信用保証協会",
         "period": ""
@@ -471,11 +487,11 @@
         "period": ""
       },
       {
-        "id": "188002",
-        "title": "支援情報 ：「経営承継円滑化法による総合的支援」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188002",
+        "id": "188020",
+        "title": "支援情報 ：「民間中心市街地商業活性化事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188020",
         "pub_date": "2026-07-23",
-        "org": "中小企業庁・他",
+        "org": "経済産業省",
         "period": ""
       },
       {
@@ -1821,7 +1837,7 @@
     "total_on_site": 169,
     "fetched": 162,
     "newest_pub_date": "2026-10-16",
-    "scraped_at": "2026-10-19T07:42:29.066944+09:00",
+    "scraped_at": "2026-10-20T09:03:53.807999+09:00",
     "items": [
       {
         "id": "194164",
@@ -3126,7 +3142,7 @@
     "total_on_site": 45,
     "fetched": 45,
     "newest_pub_date": "2026-10-15",
-    "scraped_at": "2026-10-19T07:42:36.775053+09:00",
+    "scraped_at": "2026-10-20T09:04:01.167782+09:00",
     "items": [
       {
         "id": "194095",
