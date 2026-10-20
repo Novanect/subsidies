@@ -1,10 +1,10 @@
 {
   "zenkoku": {
     "region": "全国",
-    "total_on_site": 234,
-    "fetched": 228,
+    "total_on_site": 232,
+    "fetched": 226,
     "newest_pub_date": "2026-10-19",
-    "scraped_at": "2026-10-20T09:03:32.430899+09:00",
+    "scraped_at": "2026-10-21T08:34:07.994888+09:00",
     "items": [
       {
         "id": "194199",
@@ -183,28 +183,12 @@
         "period": "2026年10月2日～2026年11月6日"
       },
       {
-        "id": "191089",
-        "title": "補助金・助成金：「2026年度第2回研究開発助成金公募のご案内　～三菱UFJ技術育成財団～」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/191089",
-        "pub_date": "2026-09-03",
-        "org": "公益財団法人 三菱UFJ技術育成財団",
-        "period": "2026年9月20日～2026年10月20日"
-      },
-      {
         "id": "191015",
         "title": "補助金・助成金：「令和8年度「MICE施設の受入環境整備事業」の二次公募を開始します」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/191015",
         "pub_date": "2026-09-02",
         "org": "観光庁",
         "period": "2026年9月1日～2026年10月30日"
-      },
-      {
-        "id": "190317",
-        "title": "補助金・助成金：「新技術開発助成申請〜新技術開発助成申請書」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/190317",
-        "pub_date": "2026-08-25",
-        "org": "公益財団法人 市村清新技術財団",
-        "period": "2026年10月1日～2026年10月20日"
       },
       {
         "id": "190382",
@@ -247,17 +231,17 @@
         "period": ""
       },
       {
-        "id": "188505",
-        "title": "補助金・助成金 ：「Scope3排出量削減のための企業間連携による省CO2設備投資促進事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188505",
+        "id": "188502",
+        "title": "補助金・助成金 ：「建築物等のZEB化・省CO2化普及加速事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188502",
         "pub_date": "2026-07-31",
         "org": "環境省",
         "period": ""
       },
       {
-        "id": "188502",
-        "title": "補助金・助成金 ：「建築物等のZEB化・省CO2化普及加速事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188502",
+        "id": "188505",
+        "title": "補助金・助成金 ：「Scope3排出量削減のための企業間連携による省CO2設備投資促進事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188505",
         "pub_date": "2026-07-31",
         "org": "環境省",
         "period": ""
@@ -311,9 +295,9 @@
         "period": ""
       },
       {
-        "id": "187986",
-        "title": "支援情報：「特定経営承継準備関連保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187986",
+        "id": "187985",
+        "title": "支援情報：「特定経営承継関連保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187985",
         "pub_date": "2026-07-23",
         "org": "信用保証協会",
         "period": ""
@@ -399,9 +383,9 @@
         "period": ""
       },
       {
-        "id": "187985",
-        "title": "支援情報：「特定経営承継関連保証」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187985",
+        "id": "187986",
+        "title": "支援情報：「特定経営承継準備関連保証」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/187986",
         "pub_date": "2026-07-23",
         "org": "信用保証協会",
         "period": ""
@@ -487,11 +471,11 @@
         "period": ""
       },
       {
-        "id": "188020",
-        "title": "支援情報 ：「民間中心市街地商業活性化事業」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188020",
+        "id": "188002",
+        "title": "支援情報 ：「経営承継円滑化法による総合的支援」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188002",
         "pub_date": "2026-07-23",
-        "org": "経済産業省",
+        "org": "中小企業庁・他",
         "period": ""
       },
       {
@@ -1837,7 +1821,7 @@
     "total_on_site": 169,
     "fetched": 162,
     "newest_pub_date": "2026-10-16",
-    "scraped_at": "2026-10-20T09:03:53.807999+09:00",
+    "scraped_at": "2026-10-21T08:34:26.572117+09:00",
     "items": [
       {
         "id": "194164",
@@ -3139,11 +3123,19 @@
   },
   "osaka": {
     "region": "大阪府",
-    "total_on_site": 45,
-    "fetched": 45,
-    "newest_pub_date": "2026-10-15",
-    "scraped_at": "2026-10-20T09:04:01.167782+09:00",
+    "total_on_site": 46,
+    "fetched": 46,
+    "newest_pub_date": "2026-10-20",
+    "scraped_at": "2026-10-21T08:34:35.416974+09:00",
     "items": [
+      {
+        "id": "194354",
+        "title": "【大阪府】補助金・助成金：「中小事業者の脱炭素化に係る自主的取組支援補助金（3次公募）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/194354",
+        "pub_date": "2026-10-20",
+        "org": "大阪府",
+        "period": "2026年10月16日～2026年11月25日"
+      },
       {
         "id": "194095",
         "title": "【大阪府】補助金・助成金：「大阪府特別高圧電力契約者等支援金【第5期：2026年7月から9月使用分対象】について」",
@@ -3217,19 +3209,19 @@
         "period": ""
       },
       {
-        "id": "188629",
-        "title": "【大阪府】補助金・助成金：「大阪府業務改善・賃上げ促進補助金について」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188629",
-        "pub_date": "2026-07-31",
-        "org": "大阪府",
-        "period": ""
-      },
-      {
         "id": "188644",
         "title": "【箕面市】支援情報：「障害者グループホームの開設を検討されている事業者・運営事業者の皆さまへ」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/188644",
         "pub_date": "2026-07-31",
         "org": "箕面市",
+        "period": ""
+      },
+      {
+        "id": "188629",
+        "title": "【大阪府】補助金・助成金：「大阪府業務改善・賃上げ促進補助金について」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/188629",
+        "pub_date": "2026-07-31",
+        "org": "大阪府",
         "period": ""
       },
       {
@@ -3313,19 +3305,19 @@
         "period": "～2026年11月30日"
       },
       {
-        "id": "184785",
-        "title": "【富田林市】補助金・助成金：「富田林市ツアー造成促進事業補助金のご案内」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/184785",
-        "pub_date": "2026-06-10",
-        "org": "富田林市",
-        "period": ""
-      },
-      {
         "id": "184789",
         "title": "【大阪府】融資・貸付：「制度融資（信用保証付き）のご案内」",
         "url": "https://j-net21.smrj.go.jp/snavi2/articles/184789",
         "pub_date": "2026-06-10",
         "org": "大阪府",
+        "period": ""
+      },
+      {
+        "id": "184785",
+        "title": "【富田林市】補助金・助成金：「富田林市ツアー造成促進事業補助金のご案内」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/184785",
+        "pub_date": "2026-06-10",
+        "org": "富田林市",
         "period": ""
       },
       {
@@ -3393,9 +3385,9 @@
         "period": "2026年4月1日～2027年3月31日"
       },
       {
-        "id": "181274",
-        "title": "【岸和田市】補助金・助成金：「岸和田市内事業者の展示会への出展等、販路拡大を支援します」」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/181274",
+        "id": "181281",
+        "title": "【岸和田市】補助金・助成金：「市内事業者の産業人材の育成を支援します」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/181281",
         "pub_date": "2026-04-24",
         "org": "岸和田市",
         "period": "～2027年1月29日"
@@ -3417,9 +3409,9 @@
         "period": "～2027年1月29日"
       },
       {
-        "id": "181281",
-        "title": "【岸和田市】補助金・助成金：「市内事業者の産業人材の育成を支援します」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/181281",
+        "id": "181274",
+        "title": "【岸和田市】補助金・助成金：「岸和田市内事業者の展示会への出展等、販路拡大を支援します」」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/181274",
         "pub_date": "2026-04-24",
         "org": "岸和田市",
         "period": "～2027年1月29日"
