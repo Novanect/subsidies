@@ -4,7 +4,7 @@
     "total_on_site": 217,
     "fetched": 211,
     "newest_pub_date": "2026-11-04",
-    "scraped_at": "2026-11-05T10:13:24.812887+09:00",
+    "scraped_at": "2026-11-06T10:18:51.271236+09:00",
     "items": [
       {
         "id": "195460",
@@ -1698,11 +1698,27 @@
   },
   "tokyo": {
     "region": "東京都",
-    "total_on_site": 160,
-    "fetched": 157,
-    "newest_pub_date": "2026-11-02",
-    "scraped_at": "2026-11-05T10:13:43.303452+09:00",
+    "total_on_site": 162,
+    "fetched": 161,
+    "newest_pub_date": "2026-11-05",
+    "scraped_at": "2026-11-06T10:19:11.387420+09:00",
     "items": [
+      {
+        "id": "195520",
+        "title": "【東京都】補助金・助成金：「AI等先端技術を活用した受入環境高度化支援事業」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/195520",
+        "pub_date": "2026-11-05",
+        "org": "東京都",
+        "period": "2026年11月4日～2026年12月11日"
+      },
+      {
+        "id": "195499",
+        "title": "【多摩市】補助金・助成金：「事業者向け重点対策加速化事業補助金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/195499",
+        "pub_date": "2026-11-05",
+        "org": "多摩市",
+        "period": "2026年4月27日～2027年1月29日"
+      },
       {
         "id": "195358",
         "title": "【葛飾区】補助金・助成金：「物価高騰緊急対策支援金」",
@@ -1800,9 +1816,9 @@
         "period": "2026年11月2日～2027年3月31日"
       },
       {
-        "id": "193115",
-        "title": "【新宿区】支援情報：「新宿区中小企業支援ガイド」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193115",
+        "id": "193123",
+        "title": "【新宿区】融資・貸付 ：「中小企業向け制度融資」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193123",
         "pub_date": "2026-10-02",
         "org": "新宿区",
         "period": ""
@@ -1824,17 +1840,17 @@
         "period": "2026年9月1日～2027年2月26日"
       },
       {
-        "id": "193122",
-        "title": "【新宿区】支援情報：「中小企業向け制度融資の金融機関受付について」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193122",
+        "id": "193115",
+        "title": "【新宿区】支援情報：「新宿区中小企業支援ガイド」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193115",
         "pub_date": "2026-10-02",
         "org": "新宿区",
         "period": ""
       },
       {
-        "id": "193123",
-        "title": "【新宿区】融資・貸付 ：「中小企業向け制度融資」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193123",
+        "id": "193122",
+        "title": "【新宿区】支援情報：「中小企業向け制度融資の金融機関受付について」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193122",
         "pub_date": "2026-10-02",
         "org": "新宿区",
         "period": ""
@@ -1920,28 +1936,28 @@
         "period": "2026年4月13日～2027年1月31日"
       },
       {
-        "id": "193226",
-        "title": "【文京区】補助金・助成金：「文京区信用保証料補助金（令和9年3月31日終了予定）」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193226",
+        "id": "193225",
+        "title": "【文京区】補助金・助成金：「展示会等出展費用補助金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193225",
         "pub_date": "2026-10-02",
         "org": "文京区",
-        "period": ""
+        "period": "2026年4月1日～"
       },
       {
-        "id": "193227",
-        "title": "補助金・助成金：「経営基盤強化支援」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193227",
+        "id": "193212",
+        "title": "補助金・助成金：「研究機関活用支援事業補助金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193212",
         "pub_date": "2026-10-02",
-        "org": "公益財団法人台東区産業振興事業団",
-        "period": "2026年4月1日～2027年1月29日"
+        "org": "港区",
+        "period": "2026年4月6日～2027年3月5日"
       },
       {
-        "id": "193228",
-        "title": "補助金・助成金：「人材確保支援」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193228",
+        "id": "193213",
+        "title": "補助金・助成金：「産業見本市等出展支援事業補助金」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193213",
         "pub_date": "2026-10-02",
-        "org": "公益財団法人台東区産業振興事業団",
-        "period": "2026年4月1日～2027年1月29日"
+        "org": "港区",
+        "period": "2026年4月1日～"
       },
       {
         "id": "193219",
@@ -1984,12 +2000,28 @@
         "period": "2026年4月1日～"
       },
       {
-        "id": "193225",
-        "title": "【文京区】補助金・助成金：「展示会等出展費用補助金」",
-        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193225",
+        "id": "193226",
+        "title": "【文京区】補助金・助成金：「文京区信用保証料補助金（令和9年3月31日終了予定）」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193226",
         "pub_date": "2026-10-02",
         "org": "文京区",
-        "period": "2026年4月1日～"
+        "period": ""
+      },
+      {
+        "id": "193227",
+        "title": "補助金・助成金：「経営基盤強化支援」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193227",
+        "pub_date": "2026-10-02",
+        "org": "公益財団法人台東区産業振興事業団",
+        "period": "2026年4月1日～2027年1月29日"
+      },
+      {
+        "id": "193228",
+        "title": "補助金・助成金：「人材確保支援」",
+        "url": "https://j-net21.smrj.go.jp/snavi2/articles/193228",
+        "pub_date": "2026-10-02",
+        "org": "公益財団法人台東区産業振興事業団",
+        "period": "2026年4月1日～2027年1月29日"
       },
       {
         "id": "193229",
@@ -2966,7 +2998,7 @@
     "total_on_site": 47,
     "fetched": 47,
     "newest_pub_date": "2026-11-02",
-    "scraped_at": "2026-11-05T10:13:50.211031+09:00",
+    "scraped_at": "2026-11-06T10:19:19.600094+09:00",
     "items": [
       {
         "id": "195350",
